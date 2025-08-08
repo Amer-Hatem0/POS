@@ -3,8 +3,8 @@ using BRIXEL_core.Interface;
 using BRIXEL_core.Models;
 using BRIXEL_infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace BRIXEL_infrastructure.Repositories
 {
@@ -26,6 +26,14 @@ namespace BRIXEL_infrastructure.Repositories
             return await _context.Testimonials.OrderByDescending(t => t.CreatedAt).ToListAsync();
         }
 
+        public async Task<List<Testimonial>> GetApprovedAsync()
+        {
+            return await _context.Testimonials
+                .Where(t => t.IsApproved && t.IsVisible)
+                .OrderByDescending(t => t.CreatedAt)
+                .ToListAsync();
+        }
+
         public async Task<bool> CreateAsync(TestimonialDto dto)
         {
             try
@@ -44,8 +52,11 @@ namespace BRIXEL_infrastructure.Repositories
                     ClientName = dto.ClientName,
                     ClientTitle = dto.ClientTitle,
                     Content = dto.Content,
+                    Rating = dto.Rating,
                     ImageUrl = $"/uploads/testimonials/{fileName}",
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow,
+                    IsApproved = false,
+                    IsVisible = true
                 };
 
                 _context.Testimonials.Add(testimonial);
@@ -75,6 +86,26 @@ namespace BRIXEL_infrastructure.Repositories
                 _logger.LogError(ex, "Error deleting testimonial");
                 return false;
             }
+        }
+
+        public async Task<bool> ApproveAsync(int id)
+        {
+            var testimonial = await _context.Testimonials.FindAsync(id);
+            if (testimonial == null) return false;
+
+            testimonial.IsApproved = true;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> ToggleVisibilityAsync(int id)
+        {
+            var testimonial = await _context.Testimonials.FindAsync(id);
+            if (testimonial == null) return false;
+
+            testimonial.IsVisible = !testimonial.IsVisible;
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

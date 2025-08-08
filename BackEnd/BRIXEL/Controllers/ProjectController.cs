@@ -3,6 +3,11 @@ using BRIXEL_core.Interface;
 using BRIXEL_core.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using BRIXEL_core.Models;
+using BRIXEL_infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 namespace BRIXEL.Controllers
 {
@@ -32,20 +37,19 @@ namespace BRIXEL.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromForm] ProjectDto dto)
         {
             var result = await _service.CreateAsync(dto);
             return result ? Ok("Project created successfully") : BadRequest("Failed to create project");
         }
 
-        [HttpPut("{id}")]
-        //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Update(int id, [FromForm] ProjectDto dto)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Update(int id, [FromForm] ProjectUpdateDto dto)
         {
             var result = await _service.UpdateAsync(id, dto);
             return result ? Ok("Project updated successfully") : NotFound("Project not found");
         }
+
         [HttpPatch("toggle-status/{id}")]
         public async Task<IActionResult> ToggleStatus(int id)
         {
@@ -54,12 +58,10 @@ namespace BRIXEL.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _service.DeleteAsync(id);
             return result ? Ok("Project deleted successfully") : NotFound("Project not found");
         }
     }
-
 }

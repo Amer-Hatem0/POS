@@ -11,7 +11,10 @@ namespace BRIXEL_core.Interface
     public interface ITestimonialService
     {
         Task<List<Testimonial>> GetAllAsync();
+        Task<List<Testimonial>> GetApprovedAsync();
         Task<bool> CreateAsync(TestimonialDto dto);
         Task<bool> DeleteAsync(int id);
+        Task<bool> ApproveAsync(int id);
+        Task<bool> ToggleVisibilityAsync(int id);
     }
 }

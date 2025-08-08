@@ -17,14 +17,23 @@ namespace BRIXEL.Controllers
         }
 
         [HttpGet]
+   
         public async Task<IActionResult> GetAll()
         {
             var testimonials = await _testimonialService.GetAllAsync();
             return Ok(testimonials);
         }
 
+        [HttpGet("public")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetApproved()
+        {
+            var testimonials = await _testimonialService.GetApprovedAsync();
+            return Ok(testimonials);
+        }
+
         [HttpPost]
-        [Authorize(Roles = "Admin,Publisher")]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([FromForm] TestimonialDto dto)
         {
             var result = await _testimonialService.CreateAsync(dto);
@@ -32,11 +41,27 @@ namespace BRIXEL.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
+ 
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _testimonialService.DeleteAsync(id);
             return result ? Ok("Deleted") : NotFound("Not found");
+        }
+
+        [HttpPatch("{id}/approve")]
+     
+        public async Task<IActionResult> Approve(int id)
+        {
+            var result = await _testimonialService.ApproveAsync(id);
+            return result ? Ok("Approved") : NotFound("Not found");
+        }
+
+        [HttpPatch("{id}/toggle-visibility")]
+ 
+        public async Task<IActionResult> ToggleVisibility(int id)
+        {
+            var result = await _testimonialService.ToggleVisibilityAsync(id);
+            return result ? Ok("Visibility toggled") : NotFound("Not found");
         }
     }
 }

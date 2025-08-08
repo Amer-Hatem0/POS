@@ -13,9 +13,8 @@ namespace BRIXEL_core.Interface
         Task<List<ProjectResponseDto>> GetAllAsync();
         Task<ProjectResponseDto?> GetByIdAsync(int id);
         Task<bool> CreateAsync(ProjectDto dto);
-        Task<bool> UpdateAsync(int id, ProjectDto dto);
+        Task<bool> UpdateAsync(int id, ProjectUpdateDto dto);
         Task<bool> DeleteAsync(int id);
         Task<bool> ToggleStatusAsync(int id);
     }
-
 }

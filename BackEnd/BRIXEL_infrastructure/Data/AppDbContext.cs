@@ -30,7 +30,7 @@ namespace BRIXEL_infrastructure.Data
         public DbSet<AdvertisementMedia> AdvertisementMedia { get; set; }
         public DbSet<MediaFile> MediaFiles { get; set; }
         public DbSet<AboutSection> AboutSection { get; set; }
-
+        public DbSet<ProjectImage> ProjectImages { get; set; }
         public DbSet<WhyChooseUsSection> WhyChooseUsSection { get; set; }
 
         
@@ -42,7 +42,10 @@ namespace BRIXEL_infrastructure.Data
 
             builder.Entity<AboutSection>().Property(e => e.ServicesEnJson).HasColumnType("longtext");
             builder.Entity<AboutSection>().Property(e => e.ServicesArJson).HasColumnType("longtext");
-
+            builder.Entity<Project>()
+                .HasMany(p => p.ProjectImages)
+                .WithOne(i => i.Project)
+                .HasForeignKey(i => i.ProjectId);
             builder.Entity<WhyChooseUsSection>()
       .Property(e => e.BulletPointsEn).HasColumnType("longtext");
 

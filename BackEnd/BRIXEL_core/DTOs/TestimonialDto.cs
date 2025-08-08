@@ -9,9 +9,10 @@ namespace BRIXEL_core.DTOs
 {
     public class TestimonialDto
     {
-        public string ClientName { get; set; }
-        public string ClientTitle { get; set; }
-        public string Content { get; set; }
-        public IFormFile Image { get; set; }
+        public string? ClientName { get; set; }
+        public string? ClientTitle { get; set; }
+        public string? Content { get; set; }
+        public IFormFile? Image { get; set; }
+        public int? Rating { get; set; }
     }
 }

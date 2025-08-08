@@ -450,6 +450,9 @@ namespace BRIXEL_infrastructure.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Client")
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -460,11 +463,23 @@ namespace BRIXEL_infrastructure.Migrations
                     b.Property<string>("DescriptionAr")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("Duration")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Features")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("LiveDemoUrl")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("SourceCodeUrl")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Technologies")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -478,6 +493,28 @@ namespace BRIXEL_infrastructure.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("BRIXEL_core.Models.ProjectImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectImages");
                 });
 
             modelBuilder.Entity("BRIXEL_core.Models.Service", b =>
@@ -587,23 +624,28 @@ namespace BRIXEL_infrastructure.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClientName")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ClientTitle")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsVisible")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("Rating")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -858,6 +900,17 @@ namespace BRIXEL_infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("BRIXEL_core.Models.ProjectImage", b =>
+                {
+                    b.HasOne("BRIXEL_core.Models.Project", "Project")
+                        .WithMany("ProjectImages")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
             modelBuilder.Entity("BRIXEL_core.Models.Service", b =>
                 {
                     b.HasOne("BRIXEL_core.Models.Category", "Category")
@@ -937,6 +990,11 @@ namespace BRIXEL_infrastructure.Migrations
                     b.Navigation("Services");
 
                     b.Navigation("SubCategories");
+                });
+
+            modelBuilder.Entity("BRIXEL_core.Models.Project", b =>
+                {
+                    b.Navigation("ProjectImages");
                 });
 #pragma warning restore 612, 618
         }
