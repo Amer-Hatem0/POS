@@ -47,15 +47,14 @@ const translations = {
     error: 'تعذر تحميل معلومات الاتصال.',
   },
 };
-
-// مكون قسم الاتصال
-const ContactSectionAr = ({ currentLanguage = 'ar' }) => { // افتراضيًا اللغة العربية
+ 
+const ContactSectionAr = ({ currentLanguage = 'ar' }) => { 
   const [contactData, setContactData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
-  const t = translations[currentLanguage]; // جلب الترجمات للغة الحالية
+  const t = translations[currentLanguage];  
 
-  // جلب بيانات الاتصال من الواجهة الخلفية
+ 
   useEffect(() => {
     api.get('/CompanyContact')
       .then(res => {
@@ -146,7 +145,7 @@ const ContactSectionAr = ({ currentLanguage = 'ar' }) => { // افتراضيًا
                 </div>
                 <div className="content">
                   <h4>{t.socialTitle}</h4>
-                  <div className="d-flex flex-wrap gap-2">
+                  <div className="d-flex flex-wrap gap-2 text-primaryicon">
                     {[
                       { icon: Facebook, url: contactData.social.facebook, label: 'Facebook' },
                       { icon: Twitter, url: contactData.social.twitter, label: 'Twitter' },

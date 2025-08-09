@@ -431,3 +431,31 @@ All colors MUST be HSL.
   background-color: rgb(8, 106, 135) !important;
   color: #ffffff;
 } */
+
+.bg-gradient-t{
+   background-color: rgb(8, 106, 135) !important;
+}
+
+.bg-primary1{
+    background-color: rgb(8, 106, 135) !important;
+}
+.bg-primary11{
+   color: rgb(8, 106, 135) !important;
+}
+.bg-primary11:hover{
+    background-color: rgb(8, 106, 135) !important;
+      color: rgb(255, 255, 255) !important;
+}
+
+.icon-box .w-5  {
+  color: #ffffff !important; 
+  
+}
+
+.text-primaryicon svg{
+    color: #ffffff !important; 
+ 
+}
+.day{
+    background-color: rgb(8, 106, 135) !important;
+}

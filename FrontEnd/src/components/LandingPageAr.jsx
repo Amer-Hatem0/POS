@@ -33,18 +33,18 @@ const LandingPageAr = () => {
 
     return (
 
-        <div className="index-page">
+        <div className="index-page"  dir="rtl">
 
             {/* Header */}
 
-            <Navbar />
+            <Navbar   />
 
 
             <main className="main">
 
                 {/* Hero Section */}
 
-                <section id="hero" className="hero section">
+                <section id="hero" className="hero section" dir="ltr">
 
                     <div className="container" data-aos="fade-up" data-aos-delay={100}>
 
@@ -56,27 +56,7 @@ const LandingPageAr = () => {
 
                                     <img src={img} alt="Hero Image" className="img-fluid" />
 
-                                    <div className="customers-badge">
-
-                                        <div className="customer-avatars">
-
-                                            <img src="assets/img/avatar-1.webp" alt="عميل 1" className="avatar" />
-
-                                            <img src="assets/img/avatar-2.webp" alt="عميل 2" className="avatar" />
-
-                                            <img src="assets/img/avatar-3.webp" alt="عميل 3" className="avatar" />
-
-                                            <img src="assets/img/avatar-4.webp" alt="عميل 4" className="avatar" />
-
-                                            <img src="assets/img/avatar-5.webp" alt="عميل 5" className="avatar" />
-
-                                            <span className="avatar more">12+</span>
-
-                                        </div>
-
-                                        <p className="mb-0 mt-2">12,000+ lorem ipsum dolor sit amet consectetur adipiscing elit</p>
-
-                                    </div>
+                                  
 
                                 </div>
 

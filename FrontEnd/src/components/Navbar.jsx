@@ -21,7 +21,7 @@ const translations = {
       { name: 'Advertisements', path: '/advertisements', isServices: false },
       {
         name: 'Services',
-        path: '/services',
+        path: '/services/programming',
         isServices: true,
         dropdown: [
           {
@@ -36,12 +36,7 @@ const translations = {
             path: '/services/marketing',
             icon: <Megaphone className="w-5 h-5" />,
           },
-          {
-            title: 'E-Commerce Solutions',
-            description: 'Online Store Development',
-            path: '/services/ecommerce',
-            icon: <ShoppingBag className="w-5 h-5" />,
-          },
+       
         ],
       },
       { name: 'Contact', path: '/contact', isServices: false },
@@ -58,35 +53,30 @@ const translations = {
     serviceTitle: 'خدماتنا',
     links: [
       { name: 'الرئيسية', path: '/ar', isServices: false },
-      { name: 'من نحن', path: '/about/ar', isServices: false },
-      { name: 'المشاريع', path: '/projects/ar', isServices: false },
-      { name: 'الإعلانات', path: '/advertisements/ar', isServices: false },
+      { name: 'من نحن', path: '/ar/about', isServices: false },
+      { name: 'المشاريع', path: '/ar/projects', isServices: false },
+      { name: 'الإعلانات', path: '/ar/advertisements', isServices: false },
       {
         name: 'الخدمات',
-        path: 'services/ar',
+           path: '/ar/services/programming',
         isServices: true,
         dropdown: [
           {
             title: 'خدمات البرمجة',
             description: 'تطوير الويب والجوال',
-            path: '/services/programming/ar',
+            path: '/ar/services/programming',
             icon: <Code className="w-5 h-5" />,
           },
           {
             title: 'خدمات التسويق',
             description: 'التسويق الرقمي وتحسين محركات البحث',
-            path: '/services/marketing/ar',
+            path: '/ar/services/marketing',
             icon: <Megaphone className="w-5 h-5" />,
           },
-          {
-            title: 'حلول التجارة الإلكترونية',
-            description: 'تطوير المتاجر الإلكترونية',
-            path: '/services/ecommerce/ar',
-            icon: <ShoppingBag className="w-5 h-5" />,
-          },
+        
         ],
       },
-      { name: 'اتصل بنا', path: '/contact/ar', isServices: false },
+      { name: 'اتصل بنا', path: '/ar/contact', isServices: false },
     ],
   },
 };

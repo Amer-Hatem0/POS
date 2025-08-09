@@ -1,10 +1,13 @@
 ﻿using BRIXEL_core.DTOs;
 using BRIXEL_core.Interface;
 using BRIXEL_core.Models;
-using BRIXEL_core.Models.DTOs;
 using BRIXEL_infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace BRIXEL_infrastructure.Repositories
 {
@@ -21,36 +24,13 @@ namespace BRIXEL_infrastructure.Repositories
 
         public async Task<List<Service>> GetAllAsync()
         {
-            try
-            {
-                return await _context.Services
-                    .Include(s => s.Category)  
-                    .ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error in GetAllAsync()");
-                throw;
-            }
+            return await _context.Services.Include(s => s.Category).ToListAsync();
         }
-
-
 
         public async Task<Service?> GetByIdAsync(int id)
         {
-            try
-            {
-                return await _context.Services
-                    .Include(s => s.Category)
-                    .FirstOrDefaultAsync(s => s.Id == id);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error in GetByIdAsync(id={id})");
-                throw;
-            }
+            return await _context.Services.Include(s => s.Category).FirstOrDefaultAsync(s => s.Id == id);
         }
-
 
         public async Task<Service> CreateAsync(ServiceDto dto)
         {
@@ -62,7 +42,10 @@ namespace BRIXEL_infrastructure.Repositories
                 DescriptionAr = dto.DescriptionAr,
                 IconUrl = dto.IconUrl,
                 CategoryId = dto.CategoryId,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow,
+                PriceFrom = dto.PriceFrom,
+                FeaturesJson = dto.Features == null ? null : JsonSerializer.Serialize(dto.Features),
+                TechnologiesJson = dto.Technologies == null ? null : JsonSerializer.Serialize(dto.Technologies)
             };
 
             _context.Services.Add(service);
@@ -70,27 +53,29 @@ namespace BRIXEL_infrastructure.Repositories
             return service;
         }
 
-        public async Task<bool> UpdateAsync(int id, ServiceDto dto)
+        public async Task<Service?> UpdateAsync(int id, ServiceDto dto)
         {
             var service = await _context.Services.FindAsync(id);
-            if (service == null) return false;
+            if (service == null) return null;
 
-            service.Title = dto.Title;
-            service.Description = dto.Description;
-            service.TitleAr = dto.TitleAr;
-            service.DescriptionAr = dto.DescriptionAr;
-            service.IconUrl = dto.IconUrl;
-            service.CategoryId = dto.CategoryId;
+            service.Title = dto.Title ?? service.Title;
+            service.Description = dto.Description ?? service.Description;
+            service.TitleAr = dto.TitleAr ?? service.TitleAr;
+            service.DescriptionAr = dto.DescriptionAr ?? service.DescriptionAr;
+            if (!string.IsNullOrWhiteSpace(dto.IconUrl)) service.IconUrl = dto.IconUrl;
+            service.CategoryId = dto.CategoryId != 0 ? dto.CategoryId : service.CategoryId;
+            service.PriceFrom = dto.PriceFrom ?? service.PriceFrom;
+            if (dto.Features != null) service.FeaturesJson = JsonSerializer.Serialize(dto.Features);
+            if (dto.Technologies != null) service.TechnologiesJson = JsonSerializer.Serialize(dto.Technologies);
 
             await _context.SaveChangesAsync();
-            return true;
+            return service;
         }
 
         public async Task<bool> ToggleVisibilityAsync(int id)
         {
             var service = await _context.Services.FindAsync(id);
             if (service == null) return false;
-
             service.IsVisible = !service.IsVisible;
             await _context.SaveChangesAsync();
             return true;
@@ -98,20 +83,11 @@ namespace BRIXEL_infrastructure.Repositories
 
         public async Task<bool> DeleteAsync(int id)
         {
-            try
-            {
-                var service = await _context.Services.FindAsync(id);
-                if (service == null) return false;
-
-                _context.Services.Remove(service);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error in DeleteAsync(id={id})");
-                throw;
-            }
+            var service = await _context.Services.FindAsync(id);
+            if (service == null) return false;
+            _context.Services.Remove(service);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

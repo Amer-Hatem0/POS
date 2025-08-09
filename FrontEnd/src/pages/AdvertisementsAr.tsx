@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import ScrollAnimatedSection from '@/components/ScrollAnimatedSection';
 import { Calendar, MapPin, Search } from 'lucide-react';
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/FooterAr";
 import api from "@/lib/axios";
 import { useNavigate } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
@@ -95,39 +95,39 @@ const Advertisements = () => {
   const adsToShow = filteredAndSortedAds.slice(0, visibleAdsCount);
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20" dir="rtl">
       <Navbar />
-      <section className="py-20 bg-gradient-t from-blue-600 to-indigo-600 text-white">
+      <section className="py-20 bg-gradient-t  from-blue-600 to-indigo-600 text-white" dir="rtl">
         <div className="container mx-auto px-4">
           <ScrollAnimatedSection>
             <div className="text-center">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Advertisement Campaigns</h1>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6">حملاتنا الإعلانية</h1>
               <p className="text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-              Expert social media management, targeted ad campaigns, and strong brand identity design that sets you apart.
+                إدارة احترافية لوسائل التواصل الاجتماعي، حملات إعلانية مستهدفة، وتصميم هوية بصرية قوية تميزك.
               </p>
             </div>
           </ScrollAnimatedSection>
         </div>
       </section>
       
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background" dir="rtl">
         <div className="container mx-auto px-4">
           <ScrollAnimatedSection>
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Featured Campaigns</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">حملات مميزة</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Real campaigns with real results that showcase our expertise
+                حملات حقيقية بنتائج حقيقية تعرض خبراتنا
               </p>
             </div>
           </ScrollAnimatedSection>
 
           <div className="flex flex-col md:flex-row gap-4 mb-12 items-center">
             <div className="relative w-full md:w-1/3">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <Input
                 type="text"
-                placeholder="     Search by name..."
-                className="pl-10 pr-4 w-full"
+                placeholder="      البحث بالاسم..."
+                className="pr-10 pl-4 w-full text-right"
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
@@ -136,17 +136,17 @@ const Advertisements = () => {
               />
             </div>
             
-            <div className="flex gap-4 w-full md:w-2/3 justify-end">
+            <div className="flex gap-4 w-full md:w-2/3 justify-start md:justify-end">
               <Select onValueChange={(value) => {
                 setSortBy(value);
                 setVisibleAdsCount(INITIAL_ADS_COUNT);
               }} value={sortBy}>
                 <SelectTrigger className="w-full md:w-[180px]">
-                  <SelectValue placeholder="Sort by..." />
+                  <SelectValue placeholder="فرز حسب..." />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="latest">Latest</SelectItem>
-                  <SelectItem value="oldest">Oldest</SelectItem>
+                  <SelectItem value="latest">الأحدث</SelectItem>
+                  <SelectItem value="oldest">الأقدم</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -155,10 +155,10 @@ const Advertisements = () => {
                 setVisibleAdsCount(INITIAL_ADS_COUNT);
               }} value={selectedCategory}>
                 <SelectTrigger className="w-full md:w-[180px]">
-                  <SelectValue placeholder="Category..." />
+                  <SelectValue placeholder="الفئة..." />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="all">كل الفئات</SelectItem>
                   {categories.map(category => (
                     <SelectItem key={category} value={category}>{category}</SelectItem>
                   ))}
@@ -191,10 +191,10 @@ const Advertisements = () => {
                           />
                         ) : (
                           <div className="w-full h-48 bg-muted flex items-center justify-center text-muted-foreground">
-                            No Image
+                            لا توجد صورة
                           </div>
                         )}
-                        <div className="absolute top-4 right-4">
+                        <div className="absolute top-4 left-4">
                           <Badge variant="secondary">
                             {new Date(ad.createdAt).getFullYear()}
                           </Badge>
@@ -203,20 +203,20 @@ const Advertisements = () => {
                       
                       <CardContent className="p-6 flex-grow flex flex-col justify-between">
                         <div>
-                          <h3 className="text-2xl font-bold mb-2 text-foreground">{ad.title}</h3>
-                          <p className="text-muted-foreground mb-4 leading-relaxed line-clamp-3">
+                          <h3 className="text-2xl font-bold mb-2 text-foreground text-right">{ad.title}</h3>
+                          <p className="text-muted-foreground mb-4 leading-relaxed line-clamp-3 text-right">
                             {ad.content}
                           </p>
-                          <div className="space-y-2 mb-6 text-sm text-muted-foreground">
+                          <div className="space-y-2 mb-6 text-sm text-muted-foreground text-right">
                             {ad.clientName && (
-                              <div className="flex items-center">
+                              <div className="flex items-center justify-end">
+                                <span>{ad.clientName}</span>
                                 <MapPin className="w-4 h-4 mr-2" />
-                                <span>Client: {ad.clientName}</span>
                               </div>
                             )}
-                            <div className="flex items-center">
+                            <div className="flex items-center justify-end">
+                              <span>تاريخ النشر: {new Date(ad.createdAt).toLocaleDateString()}</span>
                               <Calendar className="w-4 h-4 mr-2" />
-                              <span>Published: {new Date(ad.createdAt).toLocaleDateString()}</span>
                             </div>
                           </div>
                         </div>
@@ -225,7 +225,7 @@ const Advertisements = () => {
                           className="w-full mt-4 gradient-primary"
                           onClick={(e) => { e.stopPropagation(); handleOpen(ad.id); }}
                         >
-                          View Case Study
+                          عرض تفاصيل الحملة
                         </Button>
                       </CardContent>
                     </Card>
@@ -234,7 +234,7 @@ const Advertisements = () => {
               })
             ) : (
               <div className="col-span-full text-center text-muted-foreground text-xl">
-                No matching advertisements found.
+                لا توجد إعلانات مطابقة.
               </div>
             )}
           </div>
@@ -246,22 +246,22 @@ const Advertisements = () => {
                 className="text-lg px-8 py-4 border-2 border-primary"
                 onClick={handleShowMore}
               >
-                Show More Advertisements
+                عرض المزيد من الإعلانات
               </Button>
             </div>
           )}
         </div>
       </section>
  
-      <section className="py-20 bg-gradient-t from-blue-600 to-indigo-600 text-white">
+      <section className="py-20 bg-gradient-t from-blue-600 to-indigo-600 text-white" dir="rtl">
         <div className="container mx-auto px-4 text-center">
           <ScrollAnimatedSection>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Grow Your Business?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">هل أنت مستعد لتنمية أعمالك؟</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-              Let's create a custom marketing strategy that delivers real results for your business
+              دعنا نُنشئ استراتيجية تسويق مخصصة تحقق نتائج حقيقية لعملك
             </p>
-            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4">
-              Start Your Campaign Today
+            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4 day">
+              ابدأ حملتك اليوم
             </Button>
           </ScrollAnimatedSection>
         </div>

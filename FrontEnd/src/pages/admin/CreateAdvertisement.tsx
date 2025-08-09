@@ -1,168 +1,187 @@
-// ✅ AdvertisementManager.tsx with Arabic Support (titleAr, contentAr)
-
-import { useEffect, useState } from "react";
-import { Trash2, Plus, Save, X, Eye } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import api from "@/lib/axios";
-import {
-  Card, CardContent, CardHeader, CardTitle
-} from "@/components/ui/card";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "@/lib/axios";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Dialog, DialogContent, DialogHeader, DialogTitle
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/components/ui/use-toast";
-import {
-  Select, SelectContent, SelectItem, SelectTrigger, SelectValue
-} from "@/components/ui/select";
+import { Eye, EyeOff, Trash2, Link as LinkIcon, Phone, Mail, Globe, MapPin, Image as ImageIcon } from "lucide-react";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL1;
+type Advertisement = {
+  id: number;
+  title: string;
+  titleAr?: string | null;
+  content: string;
+  contentAr?: string | null;
+  clientName?: string | null;
+  longDescription?: string | null;
+  longDescriptionAr?: string | null;
+  clientUrl?: string | null;
+  clientContactEmail?: string | null;
+  clientContactPhone?: string | null;
+  clientWebsite?: string | null;
+  clientAddress?: string | null;
+  imageUrl?: string | null;
+  isPublished: boolean;
+  expirationDate?: string | null;
+  createdById?: string | null;
+  createdAt: string;
+  categoryId?: number | null;
+  categoryName?: string | null;
+  mediaUrls: string[];
+};
 
-export default function AdvertisementManager() {
-  const [ads, setAds] = useState<any[]>([]);
-  const [categories, setCategories] = useState<any[]>([]);
-  const [open, setOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    title: "",
-    titleAr: "",
-    content: "",
-    contentAr: "",
-    isPublished: true,
-    expirationDate: "",
-    image: null,
-    mediaFiles: [] as File[],
-    categoryId: "",
-  });
-  const navigate = useNavigate();
-  const { toast } = useToast();
+const ASSET_BASE = (import.meta.env.VITE_API_BASE_URL1 as string) || ""; // مثل: https://api.example.com
+const resolveUrl = (u?: string | null) => (!u ? "" : /^https?:\/\//i.test(u) ? u : `${ASSET_BASE}${u}`);
 
-  const fetchData = async () => {
-    const res1 = await api.get("/Advertisement");
-    const res2 = await api.get("/Category");
-    setAds(res1.data);
-    setCategories(res2.data);
-  };
+export default function AdminAdvertisementsPage() {
+  const [ads, setAds] = useState<Advertisement[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("title", formData.title);
-    data.append("titleAr", formData.titleAr);
-    data.append("content", formData.content);
-    data.append("contentAr", formData.contentAr);
-    data.append("isPublished", String(formData.isPublished));
-    if (formData.expirationDate) data.append("expirationDate", formData.expirationDate);
-    if (formData.image) data.append("image", formData.image);
-    if (formData.categoryId) data.append("categoryId", formData.categoryId);
-    formData.mediaFiles.forEach(file => data.append("mediaFiles", file));
-
+  const fetchAds = async () => {
+    setLoading(true);
     try {
-      await api.post("/Advertisement", data);
-      toast({ title: "Created", description: "Ad added." });
-      setFormData({
-        title: "", titleAr: "", content: "", contentAr: "",
-        isPublished: true, expirationDate: "",
-        image: null, mediaFiles: [], categoryId: ""
-      });
-      setOpen(false);
-      fetchData();
-    } catch {
-      toast({ title: "Error", description: "Failed to create ad.", variant: "destructive" });
+      const res = await axios.get("/advertisement");
+      setAds(res.data);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleDelete = async (id: number) => {
-    if (!confirm("Delete this ad?")) return;
-    await api.delete(`/Advertisement/${id}`);
-    fetchData();
-    toast({ title: "Deleted" });
+  useEffect(() => {
+    fetchAds();
+  }, []);
+
+  // نشر/إلغاء نشر عبر إرسال نفس بيانات الإعلان مع تبديل isPublished
+  const togglePublish = async (ad: Advertisement) => {
+    const fd = new FormData();
+    fd.append("title", ad.title);
+    fd.append("titleAr", ad.titleAr || "");
+    fd.append("content", ad.content);
+    fd.append("contentAr", ad.contentAr || "");
+    fd.append("clientName", ad.clientName || "");
+    fd.append("longDescription", ad.longDescription || "");
+    fd.append("longDescriptionAr", ad.longDescriptionAr || "");
+    fd.append("clientUrl", ad.clientUrl || "");
+    fd.append("clientContactEmail", ad.clientContactEmail || "");
+    fd.append("clientContactPhone", ad.clientContactPhone || "");
+    fd.append("clientWebsite", ad.clientWebsite || "");
+    fd.append("clientAddress", ad.clientAddress || "");
+    fd.append("isPublished", String(!ad.isPublished));
+    if (ad.expirationDate) fd.append("expirationDate", ad.expirationDate.split("T")[0]);
+    if (ad.categoryId) fd.append("categoryId", String(ad.categoryId));
+    await axios.put(`/advertisement/${ad.id}`, fd, { headers: { "Content-Type": "multipart/form-data" } });
+    fetchAds();
   };
 
+  const deleteAd = async (id: number) => {
+    if (confirm("Delete this advertisement?")) {
+      await axios.delete(`/advertisement/${id}`);
+      fetchAds();
+    }
+  };
+
+  const filtered = useMemo(() => {
+    if (!search.trim()) return ads;
+    const q = search.toLowerCase();
+    return ads.filter(a =>
+      (a.title || "").toLowerCase().includes(q) ||
+      (a.titleAr || "").toLowerCase().includes(q) ||
+      (a.clientName || "").toLowerCase().includes(q) ||
+      (a.categoryName || "").toLowerCase().includes(q)
+    );
+  }, [ads, search]);
+
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Advertisement Management</h1>
-        <Button onClick={() => setOpen(true)}>
-          <Plus className="w-4 h-4 mr-2" /> Add Advertisement
-        </Button>
+    <div className="container py-5">
+      <h2 className="mb-4 fw-bold">Advertisements Management</h2>
+
+      <div className="d-flex gap-2 mb-4">
+        <input
+          className="form-control"
+          placeholder="Search by title, client, or category"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <Button onClick={fetchAds}>Refresh</Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {ads.map(ad => (
-          <Card key={ad.id}>
-            {ad.imageUrl && <img src={`${BASE_URL}${ad.imageUrl}`} alt="cover" className="h-48 w-full object-cover" />}
-            <CardHeader>
-              <CardTitle>{ad.title}<div className="text-sm text-muted-foreground">{ad.titleAr}</div></CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="text-sm text-gray-700">{ad.content}<br /><span className="text-xs text-muted-foreground">{ad.contentAr}</span></div>
-              <p className="text-xs">Published: <span className={ad.isPublished ? "text-green-600" : "text-red-600"}>{ad.isPublished ? "Yes" : "No"}</span></p>
-              <div className="flex justify-between pt-2">
-                <Button size="sm" onClick={() => navigate(`/admin/advertisements/${ad.id}`)}>
-                  <Eye className="w-4 h-4 mr-1" /> View
-                </Button>
-                <Button size="sm" variant="destructive" onClick={() => handleDelete(ad.id)}>
-                  <Trash2 className="w-4 h-4" />
-                </Button>
+      {loading && <p>Loading...</p>}
+      {!loading && filtered.length === 0 && <p>No advertisements found.</p>}
+
+      <style>
+        {`
+          .ad-card{border:1px solid #eee;border-radius:12px;padding:20px;margin-bottom:20px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.03)}
+          .ad-title{font-weight:700;font-size:1.05rem}
+          .ad-meta{font-size:.9rem;color:#6b7280}
+          .badge{font-size:.8rem;font-weight:600;padding:4px 8px;border-radius:6px;margin-right:8px}
+          .grid{display:grid;gap:12px}
+          .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+          .img-thumb{width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb}
+        `}
+      </style>
+
+      {filtered.map((a) => (
+        <div className="ad-card" key={a.id}>
+          <div className="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <div className="ad-title">{a.title} {a.titleAr ? ` / ${a.titleAr}` : ""}</div>
+              <div className="ad-meta">
+                {a.categoryName ? `Category: ${a.categoryName} • ` : ""}Created: {new Date(a.createdAt).toLocaleDateString()}
+                {a.expirationDate ? ` • Expires: ${new Date(a.expirationDate).toLocaleDateString()}` : ""}
               </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              <div className="mt-2">
+                <span className="badge" style={{ backgroundColor: a.isPublished ? "#d1e7dd" : "#f8d7da", color: a.isPublished ? "#0f5132" : "#842029" }}>
+                  {a.isPublished ? "Published" : "Unpublished"}
+                </span>
+              </div>
+            </div>
+            <div className="d-flex gap-2">
+              <Link to={`/admin/ad/${a.id}`}>
+                <Button variant="outline" title="View">View</Button>
+              </Link>
+              <Button variant="outline" onClick={() => togglePublish(a)} title={a.isPublished ? "Unpublish" : "Publish"}>
+                {a.isPublished ? <EyeOff size={16} /> : <Eye size={16} />}
+              </Button>
+              <Button variant="destructive" onClick={() => deleteAd(a.id)} title="Delete">
+                <Trash2 size={16} />
+              </Button>
+            </div>
+          </div>
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Add Advertisement</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label>Title (EN)</Label>
-              <Input value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} />
-              <Label>Title (AR)</Label>
-              <Input value={formData.titleAr} onChange={e => setFormData({ ...formData, titleAr: e.target.value })} />
+          <div className="ad-meta">Content: {a.content}{a.contentAr ? ` / ${a.contentAr}` : ""}</div>
+          {a.clientName && <div className="ad-meta">Client: {a.clientName}</div>}
+
+          <div className="mt-3 grid grid-3">
+            <div className="ad-meta d-flex align-items-center gap-2">
+              {a.clientUrl ? <a className="d-inline-flex align-items-center gap-1" href={a.clientUrl} target="_blank" rel="noreferrer"><LinkIcon size={16}/>Client Link</a> : <span className="text-muted d-inline-flex align-items-center gap-1"><LinkIcon size={16}/>No Link</span>}
             </div>
-            <div>
-              <Label>Content (EN)</Label>
-              <Textarea rows={3} value={formData.content} onChange={e => setFormData({ ...formData, content: e.target.value })} />
-              <Label>Content (AR)</Label>
-              <Textarea rows={3} value={formData.contentAr} onChange={e => setFormData({ ...formData, contentAr: e.target.value })} />
+            <div className="ad-meta d-flex align-items-center gap-2">
+              {a.clientWebsite ? <a className="d-inline-flex align-items-center gap-1" href={a.clientWebsite} target="_blank" rel="noreferrer"><Globe size={16}/>Website</a> : <span className="text-muted d-inline-flex align-items-center gap-1"><Globe size={16}/>No Website</span>}
             </div>
-            <div>
-              <Label>Category</Label>
-              <Select value={formData.categoryId} onValueChange={val => setFormData({ ...formData, categoryId: val })}>
-                <SelectTrigger><SelectValue placeholder="Choose category" /></SelectTrigger>
-                <SelectContent>
-                  {categories.map(c => <SelectItem key={c.id} value={String(c.id)}>{c.name}</SelectItem>)}
-                </SelectContent>
-              </Select>
+            <div className="ad-meta d-flex align-items-center gap-2">
+              {a.clientContactEmail ? <span className="d-inline-flex align-items-center gap-1"><Mail size={16}/>{a.clientContactEmail}</span> : <span className="text-muted d-inline-flex align-items-center gap-1"><Mail size={16}/>No Email</span>}
             </div>
-            <div>
-              <Label>Image</Label>
-              <Input type="file" accept="image/*" onChange={e => setFormData({ ...formData, image: e.target.files?.[0] || null })} />
+            <div className="ad-meta d-flex align-items-center gap-2">
+              {a.clientContactPhone ? <span className="d-inline-flex align-items-center gap-1"><Phone size={16}/>{a.clientContactPhone}</span> : <span className="text-muted d-inline-flex align-items-center gap-1"><Phone size={16}/>No Phone</span>}
             </div>
-            <div>
-              <Label>Media Files</Label>
-              <Input type="file" accept="image/*,video/*" multiple onChange={e => setFormData({ ...formData, mediaFiles: Array.from(e.target.files || []) })} />
+            <div className="ad-meta d-flex align-items-center gap-2">
+              {a.clientAddress ? <span className="d-inline-flex align-items-center gap-1"><MapPin size={16}/>{a.clientAddress}</span> : <span className="text-muted d-inline-flex align-items-center gap-1"><MapPin size={16}/>No Address</span>}
             </div>
-            <div>
-              <Label>Expiration Date</Label>
-              <Input type="date" value={formData.expirationDate} onChange={e => setFormData({ ...formData, expirationDate: e.target.value })} />
-            </div>
-            <div className="flex justify-end gap-2 pt-4">
-              <Button variant="outline" onClick={() => setOpen(false)}><X className="mr-2" /> Cancel</Button>
-              <Button type="submit"><Save className="mr-2" /> Save</Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
+          </div>
+
+          <div className="mt-3 d-flex align-items-center gap-2 flex-wrap">
+            {a.imageUrl ? (
+              <img src={resolveUrl(a.imageUrl)} className="img-thumb" alt="" />
+            ) : (
+              <div className="d-inline-flex align-items-center text-muted">
+                <ImageIcon size={16} className="me-1"/>No cover image
+              </div>
+            )}
+            {Array.isArray(a.mediaUrls) && a.mediaUrls.length > 0 && a.mediaUrls.map((u, i) => (
+              <img key={i} src={resolveUrl(u)} className="img-thumb" alt="" />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

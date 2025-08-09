@@ -95,7 +95,7 @@ const ServicesSection = () => {
                   data-aos-delay={200 + index * 100}
                 >
                   <div className="card-body">
-                    <div className="icon-box mb-4 mx-auto bg-primary text-white rounded-circle d-flex align-items-center justify-content-center">
+                    <div className="icon-box mb-4 mx-auto bg-primary1 text-white rounded-circle d-flex align-items-center justify-content-center">
                       {service.iconUrl ? (
                         <img
                           src={service.iconUrl}
@@ -120,7 +120,7 @@ const ServicesSection = () => {
 
         {/* More Services Button */}
         <div className="text-center mt-5">
-          <Link to="/services" className="btn btn-outline-primary btn-lg rounded-pill px-5">
+          <Link to="/services" className="btn btn-outline-primary btn-lg rounded-pill bg-primary1 px-5">
             More Services
           </Link>
         </div>

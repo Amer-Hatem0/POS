@@ -20,6 +20,7 @@ namespace BRIXEL_core.DTOs
         public bool IsActive { get; set; }
 
         public string CategoryName { get; set; }
+        public string CategoryNameAr { get; set; }
 
         public string? Client { get; set; }
         public string? Duration { get; set; }

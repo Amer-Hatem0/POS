@@ -6,12 +6,14 @@ import { Badge } from '@/components/ui/badge';
 import ScrollAnimatedSection from '@/components/ScrollAnimatedSection';
 import { ArrowRight, Monitor } from 'lucide-react';
 import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Footer from "../../components/FooterAr";
 
 const ASSET_BASE = import.meta.env.VITE_API_BASE_URL1 as string | undefined;
 
 const formatUSD = (n?: number | null) =>
-  typeof n === "number" ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n) : "";
+  typeof n === "number"
+    ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n)
+    : "";
 
 const resolveIconSrc = (url?: string) => {
   if (!url) return "";
@@ -20,7 +22,7 @@ const resolveIconSrc = (url?: string) => {
   return url;
 };
 
-const Marketing = () => {
+const MarketingAr = () => {
   const [services, setServices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
@@ -32,30 +34,30 @@ const Marketing = () => {
         setLoading(true);
         const res = await api.get("/service");
         if (!mounted) return;
-        // عرض فقط الخدمات التي فئتها 2 والظاهرة
-        const marketingServices = (res.data || []).filter(
-          (s: any) => s.isVisible && s.categoryId === 2
+        // فقط خدمات الماركتنج (فئة 2) والظاهرة
+        const marketing = (res.data || []).filter(
+          (s: any) => s.isVisible && Number(s.categoryId) === 2
         );
-        setServices(marketingServices);
+        setServices(marketing);
       } catch {
-        setErr("Failed to load marketing services. Please try again.");
+        setErr("فشل في تحميل خدمات التسويق. حاول مرة أخرى.");
       } finally {
         if (mounted) setLoading(false);
       }
     })();
-    return () => { mounted = false };
+    return () => { mounted = false; };
   }, []);
 
   const process = [
-    { step: 1, title: 'Strategy Development', description: 'Analyze your business and create a customized marketing strategy' },
-    { step: 2, title: 'Campaign Setup', description: 'Set up campaigns across chosen marketing channels' },
-    { step: 3, title: 'Content Creation', description: 'Develop compelling content and creative assets' },
-    { step: 4, title: 'Launch & Optimize', description: 'Launch campaigns and continuously optimize performance' },
-    { step: 5, title: 'Monitor & Report', description: 'Track results and provide detailed performance reports' }
+    { step: 1, title: 'بناء الإستراتيجية', description: 'تحليل نشاطك التجاري وبناء خطة تسويق مخصصة' },
+    { step: 2, title: 'إعداد الحملات', description: 'تجهيز الحملات عبر القنوات التسويقية المختارة' },
+    { step: 3, title: 'إنشاء المحتوى', description: 'إنتاج محتوى جذاب ومواد إبداعية' },
+    { step: 4, title: 'الإطلاق والتحسين', description: 'إطلاق الحملات والتحسين المستمر للأداء' },
+    { step: 5, title: 'المتابعة والتقارير', description: 'متابعة النتائج وتقديم تقارير أداء تفصيلية' },
   ];
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20" dir="rtl">
       <Navbar />
 
       {/* Hero */}
@@ -63,11 +65,10 @@ const Marketing = () => {
         <div className="container mx-auto px-4">
           <ScrollAnimatedSection>
             <div className="text-center">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6">Marketing Services</h1>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6">خدمات التسويق الرقمي</h1>
               <p className="text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-                Comprehensive digital marketing strategies that drive real results and grow your business
+                استراتيجيات تسويق رقمي شاملة تقود نتائج حقيقية وتنمّي عملك
               </p>
-            
             </div>
           </ScrollAnimatedSection>
         </div>
@@ -78,9 +79,9 @@ const Marketing = () => {
         <div className="container mx-auto px-4">
           <ScrollAnimatedSection>
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Our Marketing Services</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">خدماتنا التسويقية</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Full-service digital marketing solutions tailored to your business goals
+                حلول تسويق رقمي متكاملة مصممة لتناسب أهداف عملك
               </p>
             </div>
           </ScrollAnimatedSection>
@@ -94,17 +95,19 @@ const Marketing = () => {
               ))}
             </div>
           ) : services.length === 0 ? (
-            <div className="text-center text-muted-foreground">No marketing services available at the moment.</div>
+            <div className="text-center text-muted-foreground">لا توجد خدمات تسويق متاحة حاليًا.</div>
           ) : (
             <div className="grid md:grid-cols-2 gap-8">
               {services.map((service: any, index: number) => {
                 const iconSrc = resolveIconSrc(service.iconUrl);
-                const pricing = service.priceFrom ? `Starting from ${formatUSD(service.priceFrom)}` : "";
+                const pricing = service.priceFrom
+                  ? `ابتداءً من ${formatUSD(service.priceFrom)}`
+                  : "";
 
                 return (
                   <ScrollAnimatedSection
                     key={service.id}
-                    animation={index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'}
+                    animation={index % 2 === 0 ? 'slide-in-right' : 'slide-in-left'}
                     delay={index * 100}
                   >
                     <Card className="h-full shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105">
@@ -117,20 +120,24 @@ const Marketing = () => {
                               <Monitor className="w-10 h-10" />
                             )}
                           </div>
-                          <div>
-                            <h3 className="text-2xl font-bold mb-2 text-foreground">{service.title}</h3>
-                            {service.description && <p className="text-muted-foreground mb-4">{service.description}</p>}
+                          <div className="text-right">
+                            <h3 className="text-2xl font-bold mb-2 text-foreground">{service.titleAr || service.title}</h3>
+                            {(service.descriptionAr || service.description) && (
+                              <p className="text-muted-foreground mb-4">
+                                {service.descriptionAr || service.description}
+                              </p>
+                            )}
                             {pricing && <div className="text-2xl font-bold text-primary mb-4">{pricing}</div>}
                           </div>
                         </div>
 
                         {Array.isArray(service.features) && service.features.length > 0 && (
                           <div className="mb-6">
-                            <h4 className="font-semibold mb-3 text-foreground">What We Do:</h4>
+                            <h4 className="font-semibold mb-3 text-foreground">الميزات:</h4>
                             <ul className="space-y-2">
                               {service.features.map((feature: string, idx: number) => (
                                 <li key={idx} className="flex items-center text-muted-foreground">
-                                  <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
+                                  <span className="w-2 h-2 bg-primary rounded-full ml-3"></span>
                                   {feature}
                                 </li>
                               ))}
@@ -139,17 +146,17 @@ const Marketing = () => {
                         )}
 
                         {Array.isArray(service.technologies) && service.technologies.length > 0 && (
-                          <div className="mb-6">
-                            <h4 className="font-semibold mb-3 text-foreground">Deliverables:</h4>
+                          <div className="mb-2">
+                            <h4 className="font-semibold mb-3 text-foreground">التقنيات والأدوات:</h4>
                             <div className="flex flex-wrap gap-2">
                               {service.technologies.map((tech: string) => (
-                                <Badge key={tech} variant="outline" className="text-xs">{tech}</Badge>
+                                <Badge key={tech} variant="outline" className="text-xs">
+                                  {tech}
+                                </Badge>
                               ))}
                             </div>
                           </div>
                         )}
-
-                   
                       </CardContent>
                     </Card>
                   </ScrollAnimatedSection>
@@ -165,9 +172,9 @@ const Marketing = () => {
         <div className="container mx-auto px-4">
           <ScrollAnimatedSection>
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-6">Our Marketing Process</h2>
+              <h2 className="text-4xl font-bold mb-6">منهجية العمل</h2>
               <p className="text-xl opacity-90 max-w-2xl mx-auto">
-                A proven methodology that ensures successful marketing campaigns
+                منهجية مجرّبة لضمان نجاح الحملات التسويقية
               </p>
             </div>
           </ScrollAnimatedSection>
@@ -196,15 +203,18 @@ const Marketing = () => {
       <section className="py-20 gradient-hero text-white">
         <div className="container mx-auto px-4 text-center">
           <ScrollAnimatedSection>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Grow Your Business?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">جاهز لتنمية عملك؟</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-              Let's create a custom marketing strategy that drives real results for your business
+              دعنا نصمم استراتيجية تسويق مخصصة تحقق نتائج ملموسة لعملك
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="outline" className="border-2 border-white   hover:bg-white hover:text-primary text-lg px-8 py-4 gradient-hero">
-                Start Growing Today <ArrowRight className="ml-2 w-5 h-5" />
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4 gradient-hero"
+              >
+                ابدأ الآن <ArrowRight className="mr-2 w-5 h-5" />
               </Button>
-             
             </div>
           </ScrollAnimatedSection>
         </div>
@@ -215,4 +225,4 @@ const Marketing = () => {
   );
 };
 
-export default Marketing;
+export default MarketingAr;

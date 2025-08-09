@@ -49,7 +49,7 @@ const FAQSectionAr = ({ currentLanguage = 'ar' }) => { // افتراضيًا ا�
   };
 
   return (
-    <section className="faq-9 faq section light-background" id="faq">
+    <section className="faq-9 faq section light-background" id="faq" dir="ltr">
       <div className="container">
         <div className="row">
           <div className="col-lg-5" data-aos="fade-up" dir={currentLanguage === 'ar' ? 'rtl' : 'ltr'}>

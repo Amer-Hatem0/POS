@@ -1,9 +1,6 @@
 ﻿using BRIXEL_core.DTOs;
 using BRIXEL_core.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BRIXEL_core.Interface
@@ -13,9 +10,8 @@ namespace BRIXEL_core.Interface
         Task<List<Service>> GetAllAsync();
         Task<Service?> GetByIdAsync(int id);
         Task<Service> CreateAsync(ServiceDto dto);
-        Task<bool> UpdateAsync(int id, ServiceDto dto);
+        Task<Service?> UpdateAsync(int id, ServiceDto dto);
         Task<bool> DeleteAsync(int id);
         Task<bool> ToggleVisibilityAsync(int id);
-
     }
 }

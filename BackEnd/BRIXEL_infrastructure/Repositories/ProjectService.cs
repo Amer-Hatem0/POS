@@ -38,6 +38,8 @@ namespace BRIXEL_infrastructure.Repositories
                     Title = p.Title,
                     TitleAr = p.TitleAr,
                     Description = p.Description,
+                    CategoryNameAr = p.Category.NameAr,
+
                     DescriptionAr = p.DescriptionAr,
                     ImageUrls = p.ProjectImages.Select(i => i.ImageUrl).ToList(),
                     CreatedAt = p.CreatedAt,
@@ -74,6 +76,7 @@ namespace BRIXEL_infrastructure.Repositories
                     Id = p.Id,
                     Title = p.Title,
                     TitleAr = p.TitleAr,
+                    CategoryNameAr = p.Category.NameAr,
                     Description = p.Description,
                     DescriptionAr = p.DescriptionAr,
                     ImageUrls = p.ProjectImages.Select(i => i.ImageUrl).ToList(),

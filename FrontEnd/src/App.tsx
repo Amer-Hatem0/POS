@@ -28,14 +28,21 @@ import ProjectDetailsPage from "./pages/admin/ProjectDetailsPage";
 import Login from "./pages/Login";
  
 import About from "./pages/About";
+import AboutAr from "./pages/AboutAr";
 import Project from "./pages/Projects";
 import Advertisement from "./pages/Advertisements";
+import AdvertisementAr from "./pages/AdvertisementsAr";
 import Service from "./pages/Services";
 import Programming from "./pages/services/Programming";
+import ProgrammingAr from "./pages/services/ProgrammingAr";
 import Marketing from "./pages/services/Marketing";
-import ECommerce from "./pages/services/ECommerce";
+import MarketingAr from "./pages/services/MarketingAr";
+ 
 import Contact from "./pages/Contact";
+import ContactAr from "./pages/ContactAr";
 import ProjectsAr from "./pages/ProjectsAr";
+import PublicAdDetailsPage from "./pages/PublicAdDetailsPage";
+import PublicAdDetailsPageAr from "./pages/PublicAdDetailsPageAr";
 
 
 
@@ -54,20 +61,27 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-           <Route path="/home" element={<LandingPage />} />
+           <Route path="/" element={<LandingPage />} />
          
-             <Route path="/home/Ar" element={<LandingPageAr />} />
+             <Route path="/Ar" element={<LandingPageAr />} />
                      <Route path="/about" element={<About />} />
+                        <Route path="/ar/about" element={<AboutAr />} />
             <Route path="/projects" element={<Project />} />
                <Route path="ar/projects" element={<  ProjectsAr />} />
 
           
             <Route path="/advertisements" element={<Advertisement />} />
+             <Route path="/ar/advertisements" element={<AdvertisementAr />} />
+             <Route path="ads/:id" element={<PublicAdDetailsPage />} />
+              <Route path="ar/ads/:id" element={<PublicAdDetailsPageAr />} />
             <Route path="/services" element={<Service />} />
             <Route path="/services/programming" element={<Programming />} />
+             <Route path="/ar/services/programming" element={<ProgrammingAr />} />
             <Route path="/services/marketing" element={<Marketing />} />
-            <Route path="/services/ecommerce" element={<ECommerce />} />
+             <Route path="/ar/services/marketing" element={<MarketingAr />} />
+           
             <Route path="/contact" element={<Contact />} />
+                  <Route path="/ar/contact" element={<ContactAr />} />
           <Route path="/" element={<Navigate to="/admin" replace />} />
 
           {/* ✅ محمية بالـ JWT */}
@@ -90,7 +104,7 @@ const App = () => (
        
     
  
-    <Route path="advertisements/:id" element={<AdvertisementDetails />} />
+    <Route path="ad/:id" element={<AdvertisementDetails />} />
   </Route>
 </Route>
 

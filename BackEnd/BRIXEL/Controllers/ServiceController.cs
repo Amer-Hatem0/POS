@@ -1,10 +1,12 @@
 ﻿using BRIXEL_core.DTOs;
 using BRIXEL_core.Interface;
 using BRIXEL_core.Models.DTOs;
-using BRIXEL_infrastructure.Repositories;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BRIXEL.Controllers
 {
@@ -21,26 +23,13 @@ namespace BRIXEL.Controllers
             _logger = logger;
         }
 
-       
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             try
             {
                 var services = await _repo.GetAllAsync();
-                var result = services.Select(s => new ServiceViewModel
-                {
-                    Id = s.Id,
-                    Title = s.Title,
-                    Description = s.Description,
-                    TitleAr = s.TitleAr,
-                    DescriptionAr = s.DescriptionAr,
-                    IconUrl = s.IconUrl,
-                    CategoryId = s.CategoryId,
-                    CategoryName = s.Category?.Name ?? "Unknown",
-                    IsVisible = s.IsVisible
-                }).ToList();
-
+                var result = services.Select(ServiceViewModel.FromEntity).ToList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -50,7 +39,6 @@ namespace BRIXEL.Controllers
             }
         }
 
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -58,7 +46,7 @@ namespace BRIXEL.Controllers
             {
                 var service = await _repo.GetByIdAsync(id);
                 if (service == null) return NotFound();
-                return Ok(service);
+                return Ok(ServiceViewModel.FromEntity(service));
             }
             catch (Exception ex)
             {
@@ -68,31 +56,25 @@ namespace BRIXEL.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] ServiceDto dto)
         {
             try
             {
                 string iconPath = null;
-
                 if (dto.Icon != null)
                 {
                     var fileName = Guid.NewGuid() + Path.GetExtension(dto.Icon.FileName);
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
-
                     Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await dto.Icon.CopyToAsync(stream);
-                    }
-
+                    using var stream = new FileStream(filePath, FileMode.Create);
+                    await dto.Icon.CopyToAsync(stream);
                     iconPath = $"/uploads/{fileName}";
                 }
 
                 dto.IconUrl = iconPath;
-                var result = await _repo.CreateAsync(dto);
-                return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+                var created = await _repo.CreateAsync(dto);
+                return CreatedAtAction(nameof(GetById), new { id = created.Id }, ServiceViewModel.FromEntity(created));
             }
             catch (Exception ex)
             {
@@ -102,31 +84,26 @@ namespace BRIXEL.Controllers
         }
 
         [HttpPut("{id}")]
-        //[Authorize(Roles = "Admin")]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Update(int id, [FromForm] ServiceDto dto)
         {
             try
             {
                 string iconPath = null;
-
                 if (dto.Icon != null)
                 {
                     var fileName = Guid.NewGuid() + Path.GetExtension(dto.Icon.FileName);
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
-
                     Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await dto.Icon.CopyToAsync(stream);
-                    }
-
+                    using var stream = new FileStream(filePath, FileMode.Create);
+                    await dto.Icon.CopyToAsync(stream);
                     iconPath = $"/uploads/{fileName}";
                 }
 
                 dto.IconUrl = iconPath;
                 var updated = await _repo.UpdateAsync(id, dto);
-                return updated ? NoContent() : NotFound();
+                if (updated == null) return NotFound();
+                return Ok(ServiceViewModel.FromEntity(updated));
             }
             catch (Exception ex)
             {
@@ -134,6 +111,7 @@ namespace BRIXEL.Controllers
                 return StatusCode(500, "Unable to update service.");
             }
         }
+
         [HttpPut("toggle/{id}")]
         public async Task<IActionResult> ToggleVisibility(int id)
         {
@@ -142,9 +120,7 @@ namespace BRIXEL.Controllers
             return Ok();
         }
 
-
         [HttpDelete("{id}")]
-        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             try

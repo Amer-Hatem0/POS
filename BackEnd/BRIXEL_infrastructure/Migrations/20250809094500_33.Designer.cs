@@ -4,6 +4,7 @@ using BRIXEL_infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BRIXEL_infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250809094500_33")]
+    partial class _33
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -561,20 +564,11 @@ namespace BRIXEL_infrastructure.Migrations
                     b.Property<string>("DescriptionAr")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("FeaturesJson")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("IconUrl")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsVisible")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<decimal?>("PriceFrom")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<string>("TechnologiesJson")
-                        .HasColumnType("longtext");
 
                     b.Property<string>("Title")
                         .IsRequired()

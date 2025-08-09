@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import ScrollAnimatedSection from '@/components/ScrollAnimatedSection';
 import { ExternalLink, Github, Calendar, Users } from 'lucide-react';
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/FooterAr";
 import api from '@/lib/axios';
 import { Link } from 'react-router-dom';
 
@@ -51,11 +51,11 @@ const ProjectsAr = () => {
 
       {/* قسم المقدمة (Hero Section) */}
       <section className="py-20 gradient-hero text-white text-right">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto   text-center px-4">
           <ScrollAnimatedSection>
             <div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6">مشاريعنا</h1>
-              <p className="text-2xl mb-8 max-w-3xl mr-auto opacity-90">
+              <p className="text-2xl mb-8 max-w-3xl m-auto opacity-90">
                 اكتشف محفظة أعمالنا من المشاريع الناجحة واعرف كيف ساعدنا الشركات على النمو والازدهار.
               </p>
             </div>
@@ -95,7 +95,7 @@ const ProjectsAr = () => {
               >
                 <Card className="h-full shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105 group text-right">
                   <div className="relative overflow-hidden rounded-t-lg">
-                    {/* عرض الصورة الأولى من قائمة الصور */}
+               
                     {project.imageUrls && project.imageUrls.length > 0 && (
                       <img
                         src={`${API_BASE_URL}${project.imageUrls[0]}`}
@@ -104,8 +104,10 @@ const ProjectsAr = () => {
                       />
                     )}
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-primary text-white">{project.categoryNameAr || project.categoryName}</Badge>
-                    </div>
+                 <Badge className="bg-primary1 text-white">
+  {project.categoryNameAr || project.categoryName}
+</Badge>
+   </div>
                     <div className="absolute top-4 left-4">
                       <Badge variant="secondary">{new Date(project.createdAt).getFullYear()}</Badge>
                     </div>
@@ -177,15 +179,15 @@ const ProjectsAr = () => {
 
       {/* قسم الحث على اتخاذ إجراء (CTA Section) */}
       <section className="py-20 gradient-primary text-white text-right">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto text-center px-4">
           <ScrollAnimatedSection>
             <div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">هل أنت مستعد لبدء مشروعك؟</h2>
-              <p className="text-xl mb-8 max-w-2xl mr-auto opacity-90">
+              <p className="text-xl mb-8 max-w-2xl m-auto   opacity-90">
                 دعنا نناقش متطلباتك وننشئ شيئًا رائعًا معًا.
               </p>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4">
+                <Button size="lg" variant="outline" className="border-2 mt-4 border-white text-white   text-lg px-8  day">
                   ابدأ اليوم
                 </Button>
               </Link>

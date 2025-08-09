@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import api from "@/lib/axios";
 
+
 const AboutSectionAr = () => {
   const [about, setAbout] = useState(null);
   const BASE_URL = "http://localhost:5010";
-
   useEffect(() => {
     api.get("/AboutSection")
       .then((res) => setAbout(res.data))

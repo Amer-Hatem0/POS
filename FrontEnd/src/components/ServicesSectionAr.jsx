@@ -1,4 +1,3 @@
- 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '@/lib/axios'; // تأكد من أن هذا المسار صحيح لملف axios الخاص بك
@@ -27,8 +26,7 @@ const translations = {
     button: 'المزيد من الخدمات',
   },
 };
-
-// ربط أيقونات الخدمات
+ 
 const serviceIcons = {
   Code,
   Laptop,
@@ -40,8 +38,7 @@ const serviceIcons = {
   MessageCircle,
   Monitor,
 };
-
-// دالة لاختيار الأيقونة المناسبة بناءً على العنوان الإنجليزي والعربي
+ 
 const getServiceIcon = (title, titleAr) => {
   const combinedTitle = `${title.toLowerCase()} ${titleAr?.toLowerCase() || ''}`;
 
@@ -73,24 +70,33 @@ const getServiceIcon = (title, titleAr) => {
   return serviceIcons.Monitor;
 };
 
-// مكون قسم الخدمات
-const ServicesSectionAr = ({ currentLanguage = 'ar' }) => { // افتراضيًا اللغة العربية
-  const [services, setServices] = useState([]);
-  const t = translations[currentLanguage]; // جلب الترجمات للغة الحالية
 
-  // جلب الخدمات من الواجهة الخلفية
+const ServicesSectionAr = ({ currentLanguage = 'ar' }) => {
+  const [services, setServices] = useState([]);
+  const t = translations[currentLanguage];
+
   const fetchServices = async () => {
     try {
       const res = await api.get('/service');
-      // تصفية الخدمات المرئية والحد إلى أول 3
-      const visibleServices = res.data.filter((service) => service.isVisible);
-      setServices(visibleServices.slice(0, 3));
+      const allVisibleServices = res.data.filter((service) => service.isVisible);
+
+      // Filter services by category and take the first two from each
+      const category1Services = allVisibleServices.filter(service => service.categoryId === 1).slice(0, 2);
+      const category2Services = allVisibleServices.filter(service => service.categoryId === 2).slice(0, 2);
+
+      // Combine the selected services
+      const selectedServices = [...category1Services, ...category2Services];
+
+      // Shuffle the services to display them randomly
+      const shuffledServices = selectedServices.sort(() => Math.random() - 0.5);
+
+      setServices(shuffledServices);
     } catch (err) {
       console.error('فشل في جلب الخدمات', err);
     }
   };
 
-  // جلب الخدمات عند تحميل المكون
+
   useEffect(() => {
     fetchServices();
   }, []);
@@ -107,14 +113,14 @@ const ServicesSectionAr = ({ currentLanguage = 'ar' }) => { // افتراضيً�
           {services.map((service, index) => {
             const IconComponent = getServiceIcon(service.title, service.titleAr);
             return (
-              <div key={service.id} className="col-lg-4 col-md-6">
+              <div key={service.id} className="col-lg-3 col-md-6">
                 <div
                   className="card h-100 border-0 shadow-lg rounded-4 p-4 text-center transition-transform hover-scale"
                   data-aos="fade-up"
                   data-aos-delay={200 + index * 100}
                 >
                   <div className="card-body">
-                    <div className="icon-box mb-4 mx-auto bg-primary text-white rounded-circle d-flex align-items-center justify-content-center">
+                    <div className="icon-box mb-4 mx-auto bg-primary1 text-white rounded-circle d-flex align-items-center justify-content-center">
                       {service.iconUrl ? (
                         <img
                           src={service.iconUrl}
@@ -141,7 +147,7 @@ const ServicesSectionAr = ({ currentLanguage = 'ar' }) => { // افتراضيً�
 
         {/* زر المزيد من الخدمات */}
         <div className="text-center mt-5">
-          <Link to="/services" className="btn btn-outline-primary btn-lg rounded-pill px-5">
+          <Link to="/services" className="btn btn-outline-primary btn-lg rounded-pill bg-primary11 px-5">
             {t.button}
           </Link>
         </div>
