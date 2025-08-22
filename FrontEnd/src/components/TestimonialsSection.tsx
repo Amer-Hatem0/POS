@@ -163,13 +163,13 @@ export default function TestimonialsPage() {
                 </div>
                 {visibleTestimonialsCount < testimonials.length && (
                     <div className="text-center mb-4">
-                        <button className="btn btn-primary" onClick={handleShowMore}>
+                        <button className="btn btn-primary gradient-hero" onClick={handleShowMore}>
                             View More
                         </button>
                     </div>
                 )}
                 <div className="text-center mb-4">
-                    <button className="btn btn-outline-primary text-white" onClick={() => setShowForm(prev => !prev)}>
+                    <button className="btn btn-outline-primary text-white gradient-hero" onClick={() => setShowForm(prev => !prev)}>
                         {showForm ? "Cancel" : "Add Your Review"}
                     </button>
                 </div>
@@ -244,7 +244,7 @@ export default function TestimonialsPage() {
     border-radius: 50%;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #086a87  !important;
+    background-color:  #514087 !important;
     color: white;
     margin-right: 16px;
   }

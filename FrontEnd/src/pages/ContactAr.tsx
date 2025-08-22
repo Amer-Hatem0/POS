@@ -142,9 +142,9 @@ const Contact = () => {
               <ScrollAnimatedSection key={contact.title} animation="scale-in" delay={index * 100}>
                 <Card className="text-center shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105">
                   <CardContent className="p-8">
-                    <div className="text-primary mb-4 flex justify-center">{contact.icon}</div>
+                    <div className="text-primary1 mb-4 flex justify-center">{contact.icon}</div>
                     <h3 className="text-xl font-bold mb-2 text-foreground">{contact.title}</h3>
-                    <p className="text-primary font-semibold mb-2">{contact.info}</p>
+                    <p className="text-primary1 font-semibold mb-2">{contact.info}</p>
                     <p className="text-muted-foreground text-sm">{contact.description}</p>
                   </CardContent>
                 </Card>
@@ -242,7 +242,7 @@ const Contact = () => {
                       {phone1 !== '—' && (
                         <a
                           href={`tel:${phone1}`}
-                          className="flex-1 border-white text-white hover:bg-white hover:text-primary border rounded-md py-2 text-center"
+                          className="flex-1 border-white text-white hover:bg-white hover:text-primary1 border rounded-md py-2 text-center"
                         >
                           <Phone className="w-4 h-4 inline ml-2" />
                           اتصل الآن
@@ -251,7 +251,7 @@ const Contact = () => {
                       {email !== '—' && (
                         <a
                           href={`mailto:${email}`}
-                          className="flex-1 border-white text-white hover:bg-white hover:text-primary border rounded-md py-2 text-center"
+                          className="flex-1 border-white text-white hover:bg-white hover:text-primary1 border rounded-md py-2 text-center"
                         >
                           <Mail className="w-4 h-4 inline ml-2" />
                           راسلنا عبر البريد

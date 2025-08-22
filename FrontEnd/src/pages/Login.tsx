@@ -5,7 +5,7 @@ import axios from "@/lib/axios";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
- 
+ import Navbar from "../components/Navbar";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -47,6 +47,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f9f9fa]">
+      <Navbar />
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-8 border border-[#78B9B5]">
         <h2 className="text-3xl font-bold text-center text-[#065084] mb-6">Admin Login</h2>
         <form onSubmit={handleLogin} className="space-y-5">

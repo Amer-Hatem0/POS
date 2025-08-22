@@ -61,9 +61,7 @@ const ContactSection = () => {
       <div className="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
         <p>{contactData.business.tagline}</p>
-        {contactData.business.taglineAr && (
-          <p className="text-muted-foreground" dir="rtl">{contactData.business.taglineAr}</p>
-        )}
+       
       </div>
       <div className="container" data-aos="fade-up" data-aos-delay={100}>
         <div className="row g-4 g-lg-5">
@@ -117,8 +115,8 @@ const ContactSection = () => {
                       { icon: Linkedin, url: contactData.social.linkedin, label: 'LinkedIn' }
                     ].map(({ icon: Icon, url, label }) => (
                       url && (
-                        <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary-dark">
-                          <Icon className="w-5 h-5" />
+                        <a key={label} href={url} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary-dark">
+                          <Icon className="w-5 h-5 " />
                         </a>
                       )
                     ))}

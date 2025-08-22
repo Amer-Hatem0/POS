@@ -120,7 +120,7 @@ const ServicesSection = () => {
 
         {/* More Services Button */}
         <div className="text-center mt-5">
-          <Link to="/services" className="btn btn-outline-primary btn-lg rounded-pill bg-primary1 px-5">
+          <Link to="/services" className="btn gradient-hero btn-outline-primary btn-lg rounded-pill bg-primary1 px-5 text-white">
             More Services
           </Link>
         </div>

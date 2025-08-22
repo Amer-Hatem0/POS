@@ -1,0 +1,86 @@
+ /* Navbar.css */
+
+/* إخفاء القائمة الرئيسية على الشاشات الأصغر من 1200 بكسل */
+@media (max-width: 1199px) {
+  .navmenu, .language-selector.d-none {
+    display: none !important;
+  }
+}
+
+/* تنسيق القائمة الجانبية (Sidebar) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* لتحديد مكان القائمة على اليمين أو اليسار حسب اللغة */
+  right: -300px;
+  /* أبعاد القائمة الجانبية */
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1050;
+  transition: right 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+/* دعم RTL للغة العربية */
+[dir='rtl'] .sidebar {
+  left: -300px;
+  right: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+[dir='rtl'] .sidebar.open {
+  left: 0;
+}
+
+.sidebar-nav li:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar-link,
+.sidebar-dropdown-toggle {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.sidebar-link:hover,
+.sidebar-dropdown-toggle:hover {
+  background-color: #f8f9fa;
+}
+
+.sidebar-dropdown-toggle svg {
+  transition: transform 0.3s ease;
+}
+
+.sidebar-dropdown-toggle.active svg {
+  transform: rotate(180deg);
+}
+
+.sidebar-dropdown-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  background-color: #f8f9fa;
+}
+
+.sidebar-dropdown-menu.open {
+  max-height: 500px; /* يجب أن تكون قيمة كافية لاستيعاب جميع العناصر */
+}
+
+.sidebar-dropdown-item {
+  padding-left: 2rem !important;
+  color: #555;
+}
+
+[dir='rtl'] .sidebar-dropdown-item {
+  padding-right: 2rem !important;
+}

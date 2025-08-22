@@ -1,7 +1,7 @@
 .services .section-header .section-meta {
   font-size: 14px;
   font-weight: 600;
-  color: var(--primary-color, #007bff);
+  color: var(--accent-color, #514087);
   text-transform: uppercase;
   display: block;
   margin-bottom: 10px;
@@ -10,20 +10,20 @@
 .services .section-header .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--dark-color, #333);
+  color: var(--heading-color, #2d2d40);
   margin-bottom: 20px;
 }
 
 .services .section-header .section-description {
   font-size: 1.1rem;
-  color: var(--muted-color, #666);
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
   max-width: 600px;
   margin: 0 auto;
 }
 
 .services .service-item {
-  background: var(--light-bg, #fff);
-  border: 1px solid var(--border-color, #eee);
+  background: var(--surface-color, #fff);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -41,7 +41,7 @@
 .services .service-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--dark-color, #333);
+  color: var(--heading-color, #2d2d40);
   margin-bottom: 10px;
 }
 
@@ -54,7 +54,7 @@
 .services .service-description,
 .services .service-description-ar {
   font-size: 1rem;
-  color: var(--muted-color, #666);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
   margin-bottom: 15px;
 }
 
@@ -65,26 +65,20 @@
 .services .category-badge .badge {
   font-size: 0.9rem;
   padding: 5px 10px;
+  background: color-mix(in srgb, var(--accent-color), transparent 90%);
+  color: var(--accent-color);
+  border-radius: 12px;
 }
-
-
-
-
-
-
-
-
-
 
 .faq-9.faq .faq-container .faq-item {
   cursor: pointer;
   padding: 15px;
-  border-bottom: 1px solid var(--border-color, #eee);
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   transition: background 0.3s ease;
 }
 
 .faq-9.faq .faq-container .faq-item.faq-active {
-  background: var(--light-bg, #f8f9fa);
+  background: color-mix(in srgb, var(--accent-color), transparent 95%);
 }
 
 .faq-9.faq .faq-container .faq-item h3 {
@@ -98,7 +92,7 @@
 .faq-9.faq .faq-container .faq-item .faq-content {
   margin-top: 10px;
   font-size: 1rem;
-  color: var(--muted-color, #666);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
 }
 
 .faq-9.faq .faq-container .faq-item .faq-content p {
@@ -115,23 +109,21 @@
 
 .faq-9.faq .faq-container .faq-item.faq-active .faq-toggle {
   transform: rotate(90deg);
+  color: var(--accent-color);
 }
 
 .faq-9.faq .faq-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--dark-color, #333);
+  color: var(--heading-color, #2d2d40);
   margin-bottom: 20px;
 }
 
 .faq-9.faq .faq-description {
   font-size: 1.1rem;
-  color: var(--muted-color, #666);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
   max-width: 500px;
 }
-
-
-
 
 .contact.section .section-title {
   text-align: center;
@@ -141,19 +133,19 @@
 .contact.section .section-title h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--dark-color, #333);
+  color: var(--heading-color, #2d2d40);
 }
 
 .contact.section .section-title p {
   font-size: 1.1rem;
-  color: var(--muted-color, #666);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
   max-width: 600px;
   margin: 0 auto;
 }
 
 .contact.section .info-box {
-  background: var(--light-bg, #fff);
-  border: 1px solid var(--border-color, #eee);
+  background: var(--surface-color, #fff);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -167,7 +159,7 @@
 
 .contact.section .info-box p {
   font-size: 1rem;
-  color: var(--muted-color, #666);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
   margin-bottom: 1rem;
 }
 
@@ -184,7 +176,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--primary-bg, #007bff1a);
+  background: color-mix(in srgb, var(--accent-color), transparent 90%);
   border-radius: 50%;
 }
 
@@ -200,8 +192,8 @@
 }
 
 .contact.section .contact-form {
-  background: var(--light-bg, #fff);
-  border: 1px solid var(--border-color, #eee);
+  background: var(--surface-color, #fff);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -215,12 +207,12 @@
 
 .contact.section .contact-form p {
   font-size: 1rem;
-  color: var(--muted-color, #666);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
   margin-bottom: 1rem;
 }
 
 .contact.section .contact-form .form-control {
-  border: 1px solid var(--border-color, #ced4da);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   border-radius: 4px;
   padding: 0.5rem;
   font-size: 1rem;
@@ -228,7 +220,7 @@
 }
 
 .contact.section .contact-form .btn {
-  background: var(--primary-color, #007bff);
+  background: var(--accent-color, #514087);
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -237,7 +229,5 @@
 }
 
 .contact.section .contact-form .btn:hover {
-  background: var(--primary-dark, #0056b3);
+  background: color-mix(in srgb, var(--accent-color), black 15%);
 }
-
- 

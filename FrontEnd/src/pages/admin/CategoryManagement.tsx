@@ -242,13 +242,13 @@ export default function CategoryManagement() {
                         >
                           Edit
                         </Button>
-                        <Button
+                        {/* <Button
                           variant="destructive"
                           size="sm"
                           onClick={() => openDeleteDialog(category)}
                         >
                           Delete
-                        </Button>
+                        </Button> */}
                       </TableCell>
                     </TableRow>
                   ))}

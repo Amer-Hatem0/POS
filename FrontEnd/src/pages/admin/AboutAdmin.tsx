@@ -30,6 +30,7 @@ export default function AboutAdmin() {
           title: "Error",
           description: "Failed to load About section.",
           variant: "destructive",
+          duration: 2000
         });
       } finally {
         setLoading(false);
@@ -52,7 +53,11 @@ export default function AboutAdmin() {
       if (aboutData.smallImage) formData.append("smallImage", aboutData.smallImage);
 
       await api.put("/AboutSection", formData);
-      toast({ title: "Success", description: "About section updated successfully." });
+      toast({
+        title: "Success",
+        description: "About section updated successfully.",
+        duration: 2000
+      });
       setIsEditing(false);
     } catch (error) {
       console.error("Failed to update About section:", error);
@@ -60,6 +65,7 @@ export default function AboutAdmin() {
         title: "Update Failed",
         description: "Something went wrong.",
         variant: "destructive",
+        duration: 2000
       });
     }
   };

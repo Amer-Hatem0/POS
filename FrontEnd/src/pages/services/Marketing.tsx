@@ -110,7 +110,7 @@ const Marketing = () => {
                     <Card className="h-full shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105">
                       <CardContent className="p-8">
                         <div className="flex items-start gap-4 mb-6">
-                          <div className="text-primary flex-shrink-0">
+                          <div className="text-primary1 flex-shrink-0">
                             {iconSrc ? (
                               <img src={iconSrc} alt="icon" className="w-10 h-10 object-contain" />
                             ) : (
@@ -120,7 +120,7 @@ const Marketing = () => {
                           <div>
                             <h3 className="text-2xl font-bold mb-2 text-foreground">{service.title}</h3>
                             {service.description && <p className="text-muted-foreground mb-4">{service.description}</p>}
-                            {pricing && <div className="text-2xl font-bold text-primary mb-4">{pricing}</div>}
+                            {pricing && <div className="text-2xl font-bold text-primary1 mb-4">{pricing}</div>}
                           </div>
                         </div>
 
@@ -161,7 +161,7 @@ const Marketing = () => {
       </section>
 
       {/* Process */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 bg-primary1 text-white">
         <div className="container mx-auto px-4">
           <ScrollAnimatedSection>
             <div className="text-center mb-16">
@@ -180,7 +180,7 @@ const Marketing = () => {
                 delay={index * 100}
               >
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-white text-primary rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                  <div className="w-16 h-16 bg-white text-primary1 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                     {step.step}
                   </div>
                   <h3 className="text-xl font-bold mb-3">{step.title}</h3>
@@ -193,7 +193,7 @@ const Marketing = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 gradient-hero text-white">
+      <section className="py-20   t ">
         <div className="container mx-auto px-4 text-center">
           <ScrollAnimatedSection>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Grow Your Business?</h2>
@@ -201,7 +201,7 @@ const Marketing = () => {
               Let's create a custom marketing strategy that drives real results for your business
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="outline" className="border-2 border-white   hover:bg-white hover:text-primary text-lg px-8 py-4 gradient-hero">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white  hover:bg-white hover:text-primary1 text-lg px-8 py-4 gradient-hero">
                 Start Growing Today <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
              

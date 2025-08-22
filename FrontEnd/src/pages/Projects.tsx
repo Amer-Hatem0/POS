@@ -104,10 +104,10 @@ const Projects = () => {
                       />
                     )}
                     <div className="absolute top-4 left-4">
-                      <Badge className="bg-primary text-white">{project.categoryName}</Badge>
+                      <Badge className="bg-primary1 text-white">{project.categoryName}</Badge>
                     </div>
                     <div className="absolute top-4 right-4">
-                      <Badge variant="secondary">{new Date(project.createdAt).getFullYear()}</Badge>
+                      <Badge variant="secondary" className="bg-secondary1">{new Date(project.createdAt).getFullYear()}</Badge>
                     </div>
                   </div>
 
@@ -142,7 +142,7 @@ const Projects = () => {
                       <ul className="text-sm text-muted-foreground space-y-1">
                         {(project.features || []).map((feature: string, idx: number) => (
                           <li key={idx} className="flex items-center">
-                            <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+                            <span className="w-1.5 h-1.5 bg-primary1 rounded-full mr-2"></span>
                             {feature}
                           </li>
                         ))}
@@ -160,7 +160,7 @@ const Projects = () => {
                       )}
                       {project.sourceCodeUrl && (
                         <a href={project.sourceCodeUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
-                          <Button size="sm" variant="outline" className="w-full">
+                          <Button size="sm" variant="outline" className="w-full text-black">
                             <Github className="w-4 h-4 mr-2" />
                             Source
                           </Button>
@@ -184,7 +184,7 @@ const Projects = () => {
               Let's discuss your requirements and create something amazing together
             </p>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4 gradient-hero">
                 Get Started Today
               </Button>
             </Link>

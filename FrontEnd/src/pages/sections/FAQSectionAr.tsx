@@ -40,7 +40,7 @@ export default function FAQGridAr() {
   const right = list.slice(mid);
 
   return (
-    <section className="py-20 bg-accent" dir="rtl">
+    <section className="py-20 bg-accent1" dir="rtl">
       <div className="container mx-auto px-4">
         <ScrollAnimatedSection>
           <div className="text-center mb-16">

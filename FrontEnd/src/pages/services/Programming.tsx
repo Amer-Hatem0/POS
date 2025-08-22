@@ -133,7 +133,7 @@ setServices(visibleProgramming);
                     <Card className="h-full shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105">
                       <CardContent className="p-8">
                         <div className="flex items-start gap-4 mb-6">
-                          <div className="text-primary flex-shrink-0">
+                          <div className="text-primary1 flex-shrink-0">
                             {iconSrc ? (
                               <img src={iconSrc} alt="icon" className="w-10 h-10 object-contain" />
                             ) : (
@@ -143,7 +143,7 @@ setServices(visibleProgramming);
                           <div>
                             <h3 className="text-2xl font-bold mb-2 text-foreground">{service.title}</h3>
                             {service.description && <p className="text-muted-foreground mb-4">{service.description}</p>}
-                            {pricing && <div className="text-2xl font-bold text-primary mb-4">{pricing}</div>}
+                            {pricing && <div className="text-2xl font-bold text-primary1 mb-4">{pricing}</div>}
                           </div>
                         </div>
 
@@ -201,7 +201,7 @@ setServices(visibleProgramming);
             {benefits.map((benefit, index) => (
               <ScrollAnimatedSection key={benefit.title} animation="scale-in" delay={index * 100}>
                 <div className="text-center">
-                  <div className="text-primary mb-4 flex justify-center">{benefit.icon}</div>
+                  <div className="text-primary1 mb-4 flex justify-center">{benefit.icon}</div>
                   <h3 className="text-xl font-bold mb-3 text-foreground">{benefit.title}</h3>
                   <p className="text-muted-foreground">{benefit.description}</p>
                 </div>
@@ -212,7 +212,7 @@ setServices(visibleProgramming);
       </section>
 
       {/* Process */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 bg-primary1 text-white">
         <div className="container mx-auto px-4">
           <ScrollAnimatedSection>
             <div className="text-center mb-16">
@@ -225,7 +225,7 @@ setServices(visibleProgramming);
             {[1, 2, 3, 4, 5].map((n, i) => (
               <ScrollAnimatedSection key={n} animation="scale-in" delay={i * 100}>
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-white text-primary rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                  <div className="w-16 h-16 bg-white text-primary1 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                     {n}
                   </div>
                   <h3 className="text-xl font-bold mb-3">
@@ -250,7 +250,7 @@ setServices(visibleProgramming);
       </section>
 
       {/* CTA */}
-      <section className="py-20 gradient-hero text-white">
+      <section className="py-20  ">
         <div className="container mx-auto px-4 text-center">
           <ScrollAnimatedSection>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Build Your Application?</h2>
@@ -258,7 +258,7 @@ setServices(visibleProgramming);
               Let's discuss your project requirements and bring your ideas to life with professional development
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4 gradient-hero">
+              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary1 text-lg px-8 py-4 gradient-hero">
                   Start Your Project <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             

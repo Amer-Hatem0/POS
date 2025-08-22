@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import AboutSection from "./AboutSection";
 import WhyChooseUsSectionEn from "./WhyChooseUsSectionEn";
 import TestimonialsSection from "./TestimonialsSection";
+import { Link } from "react-router-dom";
 
 
 const LandingPage = () => {
@@ -66,15 +67,13 @@ const LandingPage = () => {
 
                                     <div className="hero-buttons">
 
-                                        <a href="#about" className="btn btn-primary me-0 me-sm-2 mx-1">Get Started</a>
-
-                                        <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" className="btn btn-link mt-2 mt-sm-0 glightbox">
-
-                                            <i className="bi bi-play-circle me-1" />
-
-                                            Play Video
-
-                                        </a>
+                                       <Link
+  to="/about"
+  className="btn btn-primary me-0 me-sm-2 mx-1"
+>
+  Get Started
+</Link>
+                                    
 
                                     </div>
 

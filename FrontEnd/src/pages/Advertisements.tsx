@@ -260,7 +260,7 @@ const Advertisements = () => {
             <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
               Let's create a custom marketing strategy that delivers real results for your business
             </p>
-            <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4">
+            <Button size="lg" variant="outline" className="border-2 gradient-hero border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4">
               Start Your Campaign Today
             </Button>
           </ScrollAnimatedSection>

@@ -139,7 +139,7 @@ const ProgrammingAr = () => {
                     <Card className="h-full shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105">
                       <CardContent className="p-8">
                         <div className="flex items-start gap-4 mb-6">
-                          <div className="text-primary flex-shrink-0">
+                          <div className="text-primary1 flex-shrink-0">
                             {iconSrc ? (
                               <img src={iconSrc} alt="icon" className="w-10 h-10 object-contain" />
                             ) : (
@@ -155,7 +155,7 @@ const ProgrammingAr = () => {
                                 {service.descriptionAr || service.description}
                               </p>
                             )}
-                            {pricing && <div className="text-2xl font-bold text-primary mb-4">{pricing}</div>}
+                            {pricing && <div className="text-2xl font-bold text-primary1 mb-4">{pricing}</div>}
                           </div>
                         </div>
 
@@ -211,7 +211,7 @@ const ProgrammingAr = () => {
             {benefits.map((benefit, index) => (
               <ScrollAnimatedSection key={benefit.title} animation="scale-in" delay={index * 100}>
                 <div className="text-center">
-                  <div className="text-primary mb-4 flex justify-center">{benefit.icon}</div>
+                  <div className="text-primary1 mb-4 flex justify-center">{benefit.icon}</div>
                   <h3 className="text-xl font-bold mb-3 text-foreground">{benefit.title}</h3>
                   <p className="text-muted-foreground">{benefit.description}</p>
                 </div>
@@ -222,7 +222,7 @@ const ProgrammingAr = () => {
       </section>
 
       {/* Process (Arabic) */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 bg-primary1 text-white">
         <div className="container mx-auto px-4">
           <ScrollAnimatedSection>
             <div className="text-center mb-16">
@@ -235,7 +235,7 @@ const ProgrammingAr = () => {
             {process.map((step, index) => (
               <ScrollAnimatedSection key={step.step} animation="scale-in" delay={index * 100}>
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-white text-primary rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                  <div className="w-16 h-16 bg-white text-primary1 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                     {step.step}
                   </div>
                   <h3 className="text-xl font-bold mb-3">{step.title}</h3>
@@ -248,7 +248,7 @@ const ProgrammingAr = () => {
       </section>
 
       {/* CTA (Arabic) */}
-      <section className="py-20 gradient-hero text-white">
+      <section className="py-20  ">
         <div className="container mx-auto px-4 text-center">
           <ScrollAnimatedSection>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">جاهز لبناء تطبيقك؟</h2>
@@ -259,7 +259,7 @@ const ProgrammingAr = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-4 gradient-hero"
+                className="border-2 border-white text-white hover:bg-white hover:text-primary1 text-lg px-8 py-4 gradient-hero"
               >
                 ابدأ مشروعك <ArrowRight className="mr-2 w-5 h-5" />
               </Button>

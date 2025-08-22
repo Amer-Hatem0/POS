@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import api from "@/lib/axios";
-
+import Logo from '@/assets/1.png';
 const Footer = () => {
   const [contact, setContact] = useState(null);
   const [services, setServices] = useState([]);
@@ -70,15 +70,18 @@ const Footer = () => {
       </a>
     );
   };
+  
 
   return (
-    <footer className="bg-white border-t border-gray-200 py-20">
+    <footer className="bg-white514087 border-t border-gray-200 py-20">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div>
-            <Link to="/" className="text-2xl font-bold text-gray-800">iLanding</Link>
+         
+          <img src={Logo} alt="Logo" className="logo-imgئ -3" style={{ width: '160px', height: '40px' }} />
+  
 
-            <div className="mt-4 space-y-2 text-gray-600">
+            <div className="mt-4 space-y-2 text-white">
               <p className="flex items-start">
                 <MapPin size={16} className="mr-2 mt-1" />
                 {loading.contact ? "Loading address..." : (address || "—")}
@@ -119,25 +122,25 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold text-gray-800 mb-4">Useful Links</h4>
-            <ul className="space-y-2 text-gray-500">
-              <li><Link to="/" className="hover:text-gray-800 transition">Home</Link></li>
-              <li><Link to="/about" className="hover:text-gray-800 transition">About Us</Link></li>
-              <li><Link to="/services" className="hover:text-gray-800 transition">Services</Link></li>
-              <li><Link to="/project" className="hover:text-gray-800 transition">Projects</Link></li>
-              <li><Link to="/privacy" className="hover:text-gray-800 transition">Privacy Policy</Link></li>
+            <h4 className="text-lg font-semibold text-white mb-4">Useful Links</h4>
+            <ul className="space-y-2 text-white">
+              <li><Link to="/" className="hover:text-white transition">Home</Link></li>
+              <li><Link to="/about" className="hover:text-white transition">About Us</Link></li>
+              <li><Link to="/services" className="hover:text-white transition">Services</Link></li>
+              <li><Link to="/project" className="hover:text-white transition">Projects</Link></li>
+              <li><Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold text-gray-800 mb-4">Our Services</h4>
-            <ul className="space-y-2 text-gray-500">
+            <h4 className="text-lg font-semibold text-white mb-4">Our Services</h4>
+            <ul className="space-y-2 text-white">
               {loading.services ? (
                 <li>Loading services...</li>
               ) : services.length ? (
                 services.map((s) => (
                   <li key={s.id}>
-                    <Link to={`/services/${s.id}`} className="hover:text-gray-800 transition">
+                    <Link to={`/services/${s.id}`} className="hover:text-white transition">
                       {s.title || "Service"}
                     </Link>
                   </li>
@@ -149,13 +152,13 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold text-gray-800 mb-4">{tagline || "Subscribe"}</h4>
-            <p className="text-gray-500 mb-4">{description || "Get the latest updates and offers."}</p>
+            <h4 className="text-lg font-semibold text-white mb-4">{tagline || "Subscribe"}</h4>
+            <p className="text-white mb-4">{description || "Get the latest updates and offers."}</p>
           
           </div>
         </div>
 
-        {/* <div className="border-t border-gray-200 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+        {/* <div className="border-t border-gray-200 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-white text-sm">
           <p>
             &copy; {new Date().getFullYear()} <span className="font-semibold">a</span>. All Rights Reserved.
           </p>
