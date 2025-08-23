@@ -140,7 +140,7 @@ const Navbar = () => {
         {/* زر فتح وإغلاق القائمة الجانبية (Sidebar) */}
         <div className="d-xl-none p-3">
           <button
-            className="btn btn-lg p-0"
+            className="btn btn-lg p-0 text-white"
             type="button"
             onClick={toggleSidebar}
             aria-label="Toggle navigation"
@@ -247,7 +247,7 @@ const Navbar = () => {
                   </ul>
                 </>
               ) : (
-                <Link to={link.path} className={`sidebar-link p-3 d-block ${getNavLinkClass(link.path)}`} onClick={handleNavLinkClick}>
+                <Link to={link.path} className={`sidebar-link text-black p-3 d-block ${getNavLinkClass(link.path)}`} onClick={handleNavLinkClick}>
                   {link.name}
                 </Link>
               )}

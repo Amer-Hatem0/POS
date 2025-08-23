@@ -3,6 +3,7 @@ import axios from "@/lib/axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import toast, { Toaster } from "react-hot-toast";
+
 interface Testimonial {
     id: number;
     clientName: string;
@@ -11,6 +12,7 @@ interface Testimonial {
     imageUrl: string;
     rating: number;
 }
+
 export default function TestimonialsPage() {
     const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
     const [showForm, setShowForm] = useState(false);
@@ -18,16 +20,18 @@ export default function TestimonialsPage() {
         clientName: "",
         clientTitle: "",
         content: "",
-        rating: 5
+        rating: 5,
     });
     const [hoverRating, setHoverRating] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [visibleTestimonialsCount, setVisibleTestimonialsCount] = useState(4);
+
     useEffect(() => {
         AOS.init({ once: true });
         fetchTestimonials();
     }, []);
+
     const fetchTestimonials = async () => {
         try {
             const res = await axios.get("/testimonial/public");
@@ -36,10 +40,12 @@ export default function TestimonialsPage() {
             console.error("Error loading testimonials", err);
         }
     };
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const data = new FormData();
@@ -47,17 +53,18 @@ export default function TestimonialsPage() {
         data.append("ClientTitle", formData.clientTitle);
         data.append("Content", formData.content);
         data.append("Rating", formData.rating.toString());
-        data.append("Image", new Blob()); 
+        data.append("Image", new Blob());
+
         try {
             setLoading(true);
             await axios.post("/testimonial", data);
-            toast.success("Your review has been submitted successfully!");
+            toast.success("تم إرسال تقييمك بنجاح!");
             setSubmitted(true);
             setFormData({
                 clientName: "",
                 clientTitle: "",
                 content: "",
-                rating: 5
+                rating: 5,
             });
             setShowForm(false);
             fetchTestimonials();
@@ -68,6 +75,7 @@ export default function TestimonialsPage() {
             setLoading(false);
         }
     };
+
     const renderStars = (rating: number, clickable = false) => {
         return Array.from({ length: 5 }, (_, index) => {
             const currentStar = index + 1;
@@ -76,70 +84,83 @@ export default function TestimonialsPage() {
                     ? currentStar <= hoverRating
                     : currentStar <= formData.rating
                 : currentStar <= rating;
+
             return (
                 <i
                     key={index}
                     className={`bi bi-star-fill star ${isActive ? "text-warning" : "text-secondary"}`}
                     onMouseEnter={() => clickable && setHoverRating(currentStar)}
                     onMouseLeave={() => clickable && setHoverRating(null)}
-                    onClick={() => clickable && setFormData(prev => ({ ...prev, rating: currentStar }))}
-                    style={{ cursor: clickable ? "pointer" : "default", fontSize: "1.2rem", marginRight: 5 }}
+                    onClick={() => clickable && setFormData((prev) => ({ ...prev, rating: currentStar }))}
+                    style={{ cursor: clickable ? "pointer" : "default", fontSize: "1.2rem", marginLeft: 5 }}
                 />
             );
         });
     };
+
     const handleShowMore = () => {
-        setVisibleTestimonialsCount(prevCount => prevCount + 2);
+        setVisibleTestimonialsCount((prevCount) => prevCount + 2);
     };
+
     return (
-        <section className="section py-5" style={{ background: "#f9f9f9" }}>
+        <section className="section py-5" style={{ background: "#f9f9f9" }} dir="rtl">
             <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
             <div className="container">
                 <style>
                     {`
-          .testimonial-card {
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-            transition: all 0.3s ease-in-out;
-          }
-          .testimonial-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-          }
-          .testimonial-avatar {
-            width: 64px;
-            height: 64px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-right: 16px;
-          }
-          .testimonial-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0;
-          }
-          .testimonial-title {
-            font-size: 0.9rem;
-            color: #888;
-          }
-          .testimonial-content {
-            font-style: italic;
-            color: #555;
-            margin-top: 12px;
-          }
-          .stars i {
-            color: #f1c40f;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-right: 3px;
-            transition: color 0.2s ease;
-          }
-        `}
+                    .testimonial-card {
+                        background: #fff;
+                        border: 1px solid #eee;
+                        border-radius: 12px;
+                        padding: 24px;
+                        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+                        transition: all 0.3s ease-in-out;
+                        direction: rtl;
+                    }
+                    .testimonial-card:hover {
+                        transform: translateY(-4px);
+                        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+                    }
+                    .testimonial-avatar {
+                        width: 64px;
+                        height: 64px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        margin-left: 16px;
+                    }
+                    .testimonial-name {
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        margin-bottom: 0;
+                    }
+                    .testimonial-title {
+                        font-size: 0.9rem;
+                        color: #888;
+                    }
+                    .testimonial-content {
+                        font-style: italic;
+                        color: #555;
+                        margin-top: 12px;
+                    }
+                    .stars i {
+                        color: #f1c40f;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        margin-left: 3px;
+                        transition: color 0.2s ease;
+                    }
+                    .form-control::placeholder {
+                        text-align: right;
+                    }
+                    .testimonial-avatar {
+                        background-color: #514087 !important;
+                        color: white;
+                        font-size: 1.5rem;
+                        font-weight: bold;
+                    }
+                    `}
                 </style>
-                <h2 className="text-center mb-4">What People Are Saying</h2>
+                <h2 className="text-center mb-4">آراء العملاء</h2>
                 <div className="row g-4 mb-5">
                     {testimonials.slice(0, visibleTestimonialsCount).map((t, index) => (
                         <div className="col-md-6" key={t.id} data-aos="fade-up" data-aos-delay={index * 100}>
@@ -164,13 +185,13 @@ export default function TestimonialsPage() {
                 {visibleTestimonialsCount < testimonials.length && (
                     <div className="text-center mb-4">
                         <button className="btn btn-primary gradient-hero" onClick={handleShowMore}>
-                            View More
+                            عرض المزيد
                         </button>
                     </div>
                 )}
                 <div className="text-center mb-4">
-                    <button className="btn btn-outline-primary text-white gradient-hero" onClick={() => setShowForm(prev => !prev)}>
-                        {showForm ? "Cancel" : "Add Your Review"}
+                    <button className="btn btn-outline-primary text-white gradient-hero" onClick={() => setShowForm((prev) => !prev)}>
+                        {showForm ? "إلغاء" : "أضف تقييمك"}
                     </button>
                 </div>
                 {showForm && (
@@ -182,7 +203,7 @@ export default function TestimonialsPage() {
                                 name="clientName"
                                 value={formData.clientName}
                                 onChange={handleChange}
-                                placeholder="Your Name"
+                                placeholder="اسمك"
                                 required
                             />
                         </div>
@@ -193,7 +214,7 @@ export default function TestimonialsPage() {
                                 name="clientTitle"
                                 value={formData.clientTitle}
                                 onChange={handleChange}
-                                placeholder="Your Title"
+                                placeholder="صفتك"
                                 required
                             />
                         </div>
@@ -202,27 +223,28 @@ export default function TestimonialsPage() {
                                 className="form-control"
                                 name="content"
                                 rows={4}
-                                placeholder="Your Review"
+                                placeholder="تقييمك"
                                 value={formData.content}
                                 onChange={handleChange}
                                 required
                             />
                         </div>
                         <div className="col-md-12 text-center">
-                            <label className="mb-2 fw-bold">Your Rating</label>
+                            <label className="mb-2 fw-bold">تقييمك</label>
                             <div className="stars d-flex justify-content-center">
                                 {Array.from({ length: 5 }, (_, index) => {
                                     const current = index + 1;
-                                    const isActive = hoverRating !== null
-                                        ? current <= hoverRating
-                                        : current <= formData.rating;
+                                    const isActive =
+                                        hoverRating !== null
+                                            ? current <= hoverRating
+                                            : current <= formData.rating;
                                     return (
                                         <i
                                             key={index}
                                             className={`bi bi-star-fill ${isActive ? "text-warning" : "text-secondary"}`}
                                             onMouseEnter={() => setHoverRating(current)}
                                             onMouseLeave={() => setHoverRating(null)}
-                                            onClick={() => setFormData(prev => ({ ...prev, rating: current }))}
+                                            onClick={() => setFormData((prev) => ({ ...prev, rating: current }))}
                                         />
                                     );
                                 })}
@@ -230,7 +252,7 @@ export default function TestimonialsPage() {
                         </div>
                         <div className="col-12 text-center">
                             <button className="btn gradient-hero text-white mt-3" type="submit" disabled={loading}>
-                                {loading ? "Submitting..." : "Submit Review"}
+                                {loading ? "جاري الإرسال..." : "أرسل تقييمك"}
                             </button>
                         </div>
                     </form>
@@ -238,17 +260,17 @@ export default function TestimonialsPage() {
             </div>
             <style>
                 {`
-  .testimonial-avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    font-weight: bold;
-    background-color:  #514087 !important;
-    color: white;
-    margin-right: 16px;
-  }
-`}
+                .testimonial-avatar {
+                    width: 64px;
+                    height: 64px;
+                    border-radius: 50%;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    background-color:  #514087 !important;
+                    color: white;
+                    margin-right: 16px;
+                }
+                `}
             </style>
         </section>
     );

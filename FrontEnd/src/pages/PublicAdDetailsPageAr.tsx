@@ -146,7 +146,7 @@ export default function PublicAdDetailsPage() {
         <div className="container mx-auto px-4 py-20 text-center">
           <p className="text-muted-foreground">لم يتم العثور على الإعلان.</p>
           <div className="mt-6">
-            <Button onClick={() => navigate(-1)} variant="outline">
+            <Button onClick={() => navigate(-1)} variant="outline" >
               العودة
               <ArrowLeft className="w-4 h-4 ml-2" />
             </Button>
@@ -252,8 +252,8 @@ export default function PublicAdDetailsPage() {
                     </div>
 
                     <div className="pt-2">
-                      <Link to="/ads">
-                        <Button variant="outline" className="w-full">
+                      <Link to="/advertisements">
+                        <Button variant="outline" className="w-full gradient-hero">
                           العودة إلى الإعلانات
                           <ArrowLeft className="w-4 h-4 ml-2" />
                         </Button>

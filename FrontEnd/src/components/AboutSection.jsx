@@ -17,7 +17,7 @@ const BASE_URL = "http://localhost:5010";
       <div className="container" data-aos="fade-up" data-aos-delay={100}>
         <div className="row gy-4 align-items-center justify-content-between">
           <div className="col-xl-5" data-aos="fade-up" data-aos-delay={200}>
-            <span className="about-meta">WHO WE ARE</span>
+            <h1 className="about-meta">WHO WE ARE</h1>
             <h2 className="about-title">{about.titleEn}</h2>
             <p className="about-description">{about.descriptionEn}</p>
             <div className="row feature-list-wrapper">
@@ -38,7 +38,7 @@ const BASE_URL = "http://localhost:5010";
             </div>
           </div>
 
-          <div className="col-xl-6" data-aos="fade-up" data-aos-delay={300}>
+          <div className="col-xl-6 d-none d-lg-flex" data-aos="fade-up" data-aos-delay={300}>
             <div className="image-wrapper">
               <div className="images position-relative" data-aos="zoom-out" data-aos-delay={400}>
                 <img src={BASE_URL + about.mainImageUrl} alt="Business Meeting" className="img-fluid main-image rounded-4" />

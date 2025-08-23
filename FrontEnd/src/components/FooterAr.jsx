@@ -79,7 +79,7 @@ const FooterAr = () => {
           <div>
              <img src={Logo} alt="Logo" className="logo-imgئ -3" style={{ width: '160px', height: '40px' }} />
   
-            <div className="mt-4 space-y-2 text-gray-600">
+            <div className="mt-4 space-y-2 text-gray-600 text-white">
               <p className="flex text-white items-start">
                 <MapPin size={16} className="ml-2 mt-1" />
                 {loading.contact ? "جاري تحميل العنوان..." : (address || "—")}
@@ -128,7 +128,7 @@ const FooterAr = () => {
               <li><Link to="/ar/about" className="hover:text-white transition">من نحن</Link></li>
               <li><Link to="/ar/services/programming" className="hover:text-white transition">الخدمات</Link></li>
               <li><Link to="/ar/projects" className="hover:text-white transition">المشاريع</Link></li>
-              <li><Link to="/privacy" className="hover:text-white transition">سياسة الخصوصية</Link></li>
+              {/* <li><Link to="/privacy" className="hover:text-white transition">سياسة الخصوصية</Link></li> */}
             </ul>
           </div>
 
@@ -141,7 +141,7 @@ const FooterAr = () => {
               ) : services.length ? (
                 services.map((s) => (
                   <li key={s.id}>
-                    <Link to={`/services/${s.id}`} className="hover:text-white transition">
+                    <Link to={`/services/programming`} className="hover:text-white transition">
                       {s.titleAr || "خدمة"}
                     </Link>
                   </li>

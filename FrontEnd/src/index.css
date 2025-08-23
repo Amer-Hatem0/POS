@@ -182,3 +182,42 @@ background-color: #fff !important;
 .bg-white2{
     background-color: #0d6efd !important;
 }
+.underline{
+  color:hsl(var(--muted-foreground)) !important;
+}
+
+/* social-styles.css */
+
+.social-link-facebook {
+  color: #1877F2 !important;
+}
+
+.social-link-twitter {
+  color: #1DA1F2 !important;
+}
+
+.social-link-instagram {
+  color: #E4405F !important; /* لون مقارب للزهري المحمر */
+}
+
+.social-link-linkedin {
+  color: #0A66C2 !important;
+}
+
+.aaaaaaaaaaa , .items-start span{
+  color: #53428c !important;
+}
+
+.bg-primaryY{
+    background-color: #fed925 !important;
+}
+
+
+.aqqqq:hover{
+  color: #0d6efd !important;
+}
+
+
+.features {
+  background-color: rgb(240, 235, 255) !important;
+}

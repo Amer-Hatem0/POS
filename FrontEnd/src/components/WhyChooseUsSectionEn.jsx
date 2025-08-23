@@ -16,7 +16,7 @@ const WhyChooseUsSectionEn = () => {
   return (
     <section id="features" className="features section" style={{ backgroundColor: '#f2f7f9' }}>
       <div className="container section-title" data-aos="fade-up">
-        <h2 className="Choose">{data.mainTitleEn}</h2>
+        <h2 className="Choose aaaaaaaaaaa">{data.mainTitleEn}</h2>
         <p>{data.subtitleEn}</p>
       </div>
 
@@ -25,7 +25,7 @@ const WhyChooseUsSectionEn = () => {
           <div className="tab-pane fade active show">
             <div className="row">
               <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>{data.highlightTitleEn}</h3>
+                <h3 className="aaaaaaaaaaa">{data.highlightTitleEn}</h3>
                 <p className="fst-italic">{data.highlightDescriptionEn}</p>
                 <ul>
                   {data.bulletPointsEn?.map((item, idx) => (

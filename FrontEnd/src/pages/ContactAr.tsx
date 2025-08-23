@@ -215,25 +215,72 @@ const Contact = () => {
                     <h3 className="text-2xl font-bold mb-4 text-foreground">لماذا تختارنا؟</h3>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-start">
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 ml-3 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-primaryY rounded-full mt-2 ml-3 flex-shrink-0"></span>
                         <span>فريق ذو خبرة وتقنيات حديثة</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 ml-3 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-primaryY rounded-full mt-2 ml-3 flex-shrink-0"></span>
                         <span>تسليم ودعم مثبت</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 ml-3 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-primaryY rounded-full mt-2 ml-3 flex-shrink-0"></span>
                         <span>تسعير وخطط زمنية شفافة</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 ml-3 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-primaryY rounded-full mt-2 ml-3 flex-shrink-0"></span>
                         <span>استشارة مجانية وتحليل للمشروع</span>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
 
+<Card className="shadow-elegant">
+    <CardContent className="p-8" dir="rtl">
+        <h3 className="text-2xl font-bold mb-6 text-foreground text-right">تابعنا على الإنترنت</h3>
+        <div className="grid grid-cols-2 gap-4">
+            {data?.facebookUrl ? (
+                <a
+                    href={data.facebookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link-facebook flex items-center gap-2 p-3 border rounded-md hover:bg-accent1 flex-row-reverse justify-end"
+                >
+                    فيسبوك <Facebook className="w-5 h-5" />
+                </a>
+            ) : null}
+            {data?.twitterUrl ? (
+                <a
+                    href={data.twitterUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link-twitter flex items-center gap-2 p-3 border rounded-md hover:bg-accent1 flex-row-reverse justify-end"
+                >
+                    تويتر <Twitter className="w-5 h-5" />
+                </a>
+            ) : null}
+            {data?.instagramUrl ? (
+                <a
+                    href={data.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link-instagram flex items-center gap-2 p-3 border rounded-md hover:bg-accent1 flex-row-reverse justify-end"
+                >
+                    إنستجرام <Instagram className="w-5 h-5" />
+                </a>
+            ) : null}
+            {data?.linkedInUrl ? (
+                <a
+                    href={data.linkedInUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link-linkedin flex items-center gap-2 p-3 border rounded-md hover:bg-accent1 flex-row-reverse justify-end"
+                >
+                    لينكد إن <Linkedin className="w-5 h-5" />
+                </a>
+            ) : null}
+        </div>
+    </CardContent>
+</Card>
                 <Card className="gradient-primary text-white shadow-elegant">
                   <CardContent className="p-8 text-center">
                     <h3 className="text-2xl font-bold mb-4">هل تحتاج إلى مساعدة فورية؟</h3>

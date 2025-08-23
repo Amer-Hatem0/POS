@@ -74,7 +74,7 @@ const App = () => (
              <Route path="/ar/advertisements" element={<AdvertisementAr />} />
              <Route path="ads/:id" element={<PublicAdDetailsPage />} />
               <Route path="ar/ads/:id" element={<PublicAdDetailsPageAr />} />
-            <Route path="/services" element={<Service />} />
+          
             <Route path="/services/programming" element={<Programming />} />
              <Route path="/ar/services/programming" element={<ProgrammingAr />} />
             <Route path="/services/marketing" element={<Marketing />} />

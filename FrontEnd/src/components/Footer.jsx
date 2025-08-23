@@ -126,9 +126,9 @@ const Footer = () => {
             <ul className="space-y-2 text-white">
               <li><Link to="/" className="hover:text-white transition">Home</Link></li>
               <li><Link to="/about" className="hover:text-white transition">About Us</Link></li>
-              <li><Link to="/services" className="hover:text-white transition">Services</Link></li>
+              <li><Link to="/services/programming" className="hover:text-white transition">Services</Link></li>
               <li><Link to="/project" className="hover:text-white transition">Projects</Link></li>
-              <li><Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
+              {/* <li><Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link></li> */}
             </ul>
           </div>
 
@@ -140,7 +140,7 @@ const Footer = () => {
               ) : services.length ? (
                 services.map((s) => (
                   <li key={s.id}>
-                    <Link to={`/services/${s.id}`} className="hover:text-white transition">
+                    <Link to={`/services/programming`} className="hover:text-white transition">
                       {s.title || "Service"}
                     </Link>
                   </li>

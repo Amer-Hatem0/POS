@@ -80,7 +80,7 @@ const ServicesSection = () => {
     <section id="services" className="py-5 bg-light">
       <div className="container" data-aos="fade-up" data-aos-delay={100}>
         <div className="text-center mb-5">
-          <h2 className="display-4 fw-bold">Our Featured Services</h2>
+          <h1 className="display-4 fw-bold aaaaaaaaaaa">Our Featured Services</h1>
           <p className="lead text-muted">Discover how we can help you achieve your goals.</p>
         </div>
 
@@ -120,7 +120,7 @@ const ServicesSection = () => {
 
         {/* More Services Button */}
         <div className="text-center mt-5">
-          <Link to="/services" className="btn gradient-hero btn-outline-primary btn-lg rounded-pill bg-primary1 px-5 text-white">
+          <Link to="/services/programming" className="btn gradient-hero btn-outline-primary btn-lg rounded-pill bg-primary1 px-5 text-white">
             More Services
           </Link>
         </div>

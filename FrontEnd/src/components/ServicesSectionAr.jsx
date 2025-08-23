@@ -105,7 +105,7 @@ const ServicesSectionAr = ({ currentLanguage = 'ar' }) => {
     <section id="services" className="py-5 bg-light">
       <div className="container" data-aos="fade-up" data-aos-delay={100} dir={currentLanguage === 'ar' ? 'rtl' : 'ltr'}>
         <div className="text-center mb-5">
-          <h2 className="display-4 fw-bold">{t.title}</h2>
+          <h1 className="display-4 fw-bold aaaaaaaaaaa">{t.title}</h1>
           <p className="lead text-muted">{t.subtitle}</p>
         </div>
 
@@ -147,7 +147,7 @@ const ServicesSectionAr = ({ currentLanguage = 'ar' }) => {
 
         {/* زر المزيد من الخدمات */}
         <div className="text-center mt-5">
-          <Link to="/services" className="btn btn-outline-primary btn-lg rounded-pill bg-primary11 px-5">
+          <Link to="/services/programming" className="btn btn-outline-primary btn-lg rounded-pill bg-primary11 px-5">
             {t.button}
           </Link>
         </div>

@@ -16,7 +16,7 @@ import FooterAr from "./FooterAr";
 import AboutSectionAr from "./AboutSectionAr";
 import WhyChooseUsSectionAr from "./WhyChooseUsSectionAr";
 
-
+import TestimonialsSection from "./TestimonialsSectionAr";
 
 
 import img from "@/assets/img/features-illustration-3.webp";
@@ -52,7 +52,7 @@ const LandingPageAr = () => {
 
                             <div className="col-lg-6">
 
-                                <div className="hero-image" data-aos="zoom-out" data-aos-delay={300}>
+                                <div className="hero-image " data-aos="zoom-out" data-aos-delay={300}>
 
                                     <img src={img} alt="Hero Image" className="img-fluid" />
 
@@ -62,11 +62,11 @@ const LandingPageAr = () => {
 
                             </div>
 
-                            <div className="col-lg-6 text-end" dir="rtl">
+                            <div className="col-lg-6 text-end " dir="rtl">
                                 <div className="hero-content" data-aos="fade-up" data-aos-delay="200">
 
-                                    <div className="company-badge mb-4">
-                                        <i className="bi bi-gear-fill ms-2"></i>
+                                    <div className="company-badge mb-4 mt-2">
+                                        <i className="bi bi-gear-fill ms-2 "></i>
                                         تعزيز نموك الرقمي
                                     </div>
 
@@ -92,97 +92,7 @@ const LandingPageAr = () => {
 
                         </div>
 
-                        <div className="row stats-row gy-4 mt-5" data-aos="fade-up" data-aos-delay={500}>
-
-                            <div className="col-lg-3 col-md-6">
-
-                                <div className="stat-item">
-
-                                    <div className="stat-icon">
-
-                                        <i className="bi bi-trophy" />
-
-                                    </div>
-
-                                    <div className="stat-content">
-
-                                        <h4>3x جوائز فاز بها</h4>
-
-                                        <p className="mb-0">Vestibulum ante ipsum</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="col-lg-3 col-md-6">
-
-                                <div className="stat-item">
-
-                                    <div className="stat-icon">
-
-                                        <i className="bi bi-briefcase" />
-
-                                    </div>
-
-                                    <div className="stat-content">
-
-                                        <h4>6.5k Faucibus</h4>
-
-                                        <p className="mb-0">Nullam quis ante</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="col-lg-3 col-md-6">
-
-                                <div className="stat-item">
-
-                                    <div className="stat-icon">
-
-                                        <i className="bi bi-graph-up" />
-
-                                    </div>
-
-                                    <div className="stat-content">
-
-                                        <h4>80k Mauris</h4>
-
-                                        <p className="mb-0">Etiam sit amet orci</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="col-lg-3 col-md-6">
-
-                                <div className="stat-item">
-
-                                    <div className="stat-icon">
-
-                                        <i className="bi bi-award" />
-
-                                    </div>
-
-                                    <div className="stat-content">
-
-                                        <h4>6x Phasellus</h4>
-
-                                        <p className="mb-0">Vestibulum ante ipsum</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
+                  
 
                     </div>
 
@@ -234,7 +144,7 @@ const LandingPageAr = () => {
 
                 {/* Testimonials Section */}
  
-
+    <TestimonialsSection />
                 {/* Contact Section */}
 
                 <ContactSectionAr />{/* /Contact Section */}

@@ -138,9 +138,9 @@ const Contact = () => {
               <ScrollAnimatedSection key={contact.title} animation="scale-in" delay={index * 100}>
                 <Card className="text-center shadow-elegant hover:shadow-glow transition-all duration-300 hover:scale-105">
                   <CardContent className="p-8">
-                    <div className="text-primary111 mb-4 flex justify-center">{contact.icon}</div>
-                    <h3 className="text-xl font-bold mb-2 text-foreground">{contact.title}</h3>
-                    <p className="text-primary111 font-semibold mb-2">{contact.info}</p>
+                    <div className="text-primary111 mb-4 flex justify-center aaaaaaaaaaa">{contact.icon}</div>
+                    <h3 className="text-xl font-bold mb-2 text-foreground ">{contact.title}</h3>
+                    <p className="text-primary111 font-semibold mb-2 aaaaaaaaaaa">{contact.info}</p>
                     <p className="text-muted-foreground text-sm">{contact.description}</p>
                   </CardContent>
                 </Card>
@@ -212,19 +212,19 @@ const Contact = () => {
                     <h3 className="text-2xl font-bold mb-4 text-foreground">Why Choose Us?</h3>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-start">
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-primaryY rounded-full mt-2 mr-3 flex-shrink-0"></span>
                         <span>Experienced team and modern stack</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-primaryY rounded-full mt-2 mr-3 flex-shrink-0"></span>
                         <span>Proven delivery and support</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-primaryY rounded-full mt-2 mr-3 flex-shrink-0"></span>
                         <span>Transparent pricing and timelines</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-primaryY rounded-full mt-2 mr-3 flex-shrink-0"></span>
                         <span>Free consultation and project analysis</span>
                       </li>
                     </ul>
@@ -240,7 +240,7 @@ const Contact = () => {
                           href={data.facebookUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 p-3 border rounded-md hover:bg-accent1"
+                          className="flex items-center gap-2 p-3 border rounded-md hover:bg-accent1 social-link-facebook"
                         >
                           <Facebook className="w-5 h-5" /> Facebook
                         </a>
@@ -250,7 +250,7 @@ const Contact = () => {
                           href={data.twitterUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 p-3 border rounded-md hover:bg-accent1"
+                          className="flex items-center gap-2 p-3 border rounded-md hover:bg-accent1 social-link-twitter"
                         >
                           <Twitter className="w-5 h-5" /> Twitter
                         </a>
@@ -260,7 +260,7 @@ const Contact = () => {
                           href={data.instagramUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 p-3 border rounded-md hover:bg-accent1"
+                          className="flex items-center gap-2 p-3 border rounded-md hover:bg-accent1 social-link-instagram"
                         >
                           <Instagram className="w-5 h-5" /> Instagram
                         </a>
@@ -270,7 +270,7 @@ const Contact = () => {
                           href={data.linkedInUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 p-3 border rounded-md hover:bg-accent1"
+                          className="flex items-center gap-2 p-3 border rounded-md hover:bg-accent1 social-link-linkedin"
                         >
                           <Linkedin className="w-5 h-5" /> LinkedIn
                         </a>

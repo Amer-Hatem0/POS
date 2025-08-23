@@ -335,8 +335,8 @@ export default function PublicAdDetailsPage() {
                     </div>
 
                     <div className="pt-2">
-                      <Link to="/ads">
-                        <Button variant="outline" className="w-full">
+                      <Link to="/advertisements">
+                        <Button variant="outline" className="w-full gradient-hero">
                           <ArrowLeft className="w-4 h-4 mr-2" />
                           Back to Advertisements
                         </Button>

@@ -290,7 +290,7 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">{stat.title}</p>
-                  <p className="text-3xl font-bold text-foreground mt-1">
+                  <p className="text-2xl font-bold text-foreground mt-1">
                     {loading ? "Loading..." : stat.value}
                   </p>
                 </div>

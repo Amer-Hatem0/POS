@@ -81,33 +81,13 @@ const LandingPage = () => {
 
                             </div>
 
-                            <div className="col-lg-6">
+                            <div className="col-lg-6 ">
 
                                 <div className="hero-image" data-aos="zoom-out" data-aos-delay={300}>
 
                                     <img src="assets/img/illustration-1.webp" alt="Hero Image" className="img-fluid" />
 
-                                    <div className="customers-badge">
-
-                                        <div className="customer-avatars">
-
-                                            <img src="assets/img/avatar-1.webp" alt="Customer 1" className="avatar" />
-
-                                            <img src="assets/img/avatar-2.webp" alt="Customer 2" className="avatar" />
-
-                                            <img src="assets/img/avatar-3.webp" alt="Customer 3" className="avatar" />
-
-                                            <img src="assets/img/avatar-4.webp" alt="Customer 4" className="avatar" />
-
-                                            <img src="assets/img/avatar-5.webp" alt="Customer 5" className="avatar" />
-
-                                            <span className="avatar more">12+</span>
-
-                                        </div>
-
-                                        <p className="mb-0 mt-2">12,000+ lorem ipsum dolor sit amet consectetur adipiscing elit</p>
-
-                                    </div>
+                             
 
                                 </div>
 
@@ -115,97 +95,7 @@ const LandingPage = () => {
 
                         </div>
 
-                        <div className="row stats-row gy-4 mt-5" data-aos="fade-up" data-aos-delay={500}>
-
-                            <div className="col-lg-3 col-md-6">
-
-                                <div className="stat-item">
-
-                                    <div className="stat-icon">
-
-                                        <i className="bi bi-trophy" />
-
-                                    </div>
-
-                                    <div className="stat-content">
-
-                                        <h4>3x Won Awards</h4>
-
-                                        <p className="mb-0">Vestibulum ante ipsum</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="col-lg-3 col-md-6">
-
-                                <div className="stat-item">
-
-                                    <div className="stat-icon">
-
-                                        <i className="bi bi-briefcase" />
-
-                                    </div>
-
-                                    <div className="stat-content">
-
-                                        <h4>6.5k Faucibus</h4>
-
-                                        <p className="mb-0">Nullam quis ante</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="col-lg-3 col-md-6">
-
-                                <div className="stat-item">
-
-                                    <div className="stat-icon">
-
-                                        <i className="bi bi-graph-up" />
-
-                                    </div>
-
-                                    <div className="stat-content">
-
-                                        <h4>80k Mauris</h4>
-
-                                        <p className="mb-0">Etiam sit amet orci</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="col-lg-3 col-md-6">
-
-                                <div className="stat-item">
-
-                                    <div className="stat-icon">
-
-                                        <i className="bi bi-award" />
-
-                                    </div>
-
-                                    <div className="stat-content">
-
-                                        <h4>6x Phasellus</h4>
-
-                                        <p className="mb-0">Vestibulum ante ipsum</p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
+                     
 
                     </div>
 

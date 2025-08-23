@@ -172,14 +172,14 @@ export default function Contact() {
           {/* Conditional rendering for Save/Cancel or Edit buttons */}
           {isEditing ? (
             <>
-              <Button variant="outline" onClick={handleCancel}>Cancel</Button>
-              <Button onClick={handleSave} className="btn-gradient">
+              <Button variant="outline" className="" onClick={handleCancel}>Cancel</Button>
+              <Button onClick={handleSave} className="">
                 <Save className="w-4 h-4 mr-2" />
                 Save Changes
               </Button>
             </>
           ) : (
-            <Button onClick={() => setIsEditing(true)} className="btn-gradient">
+            <Button onClick={() => setIsEditing(true)} className="">
               <Edit className="w-4 h-4 mr-2" />
               Edit Information
             </Button>
@@ -302,9 +302,9 @@ export default function Contact() {
                 {isEditing ? (
                   <Input value={contactData.social[key]} onChange={(e) => updateSocialData(key, e.target.value)} placeholder={`${label} URL`} />
                 ) : (
-                  <a href={contactData.social[key]} target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline">
+                  <p href={contactData.social[key]} target="_blank" rel="noopener noreferrer" className=" aqqqq hover:underline aqqqq">
                     {contactData.social[key] ? label + " Profile" : "N/A"}
-                  </a>
+                  </p>
                 )}
               </div>
             ))}

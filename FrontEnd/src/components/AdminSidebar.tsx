@@ -75,11 +75,11 @@ export function AdminSidebar({ collapsed, mobileOpen = false, onCloseMobile }: A
               to={item.url}
               onClick={onCloseMobile} // عند الضغط على رابط بالموبايل، أغلق الدروار
               className={({ isActive }) =>
-                `flex items-center gap-3 p-2 rounded-lg transition-all text-sm font-medium
+                `flex items-center gap-3 p-2 rounded-lg transition-all text-sm font-medium aqqqq
                 ${item.url === "/admin"
                   ? isExactActive(item.url)
                     ? "bg-primary text-white"
-                    : "text-gray-700 hover:bg-gray-100"
+                    : "text-gray-700 hover:bg-gray-100  "
                   : isActive
                     ? "bg-white text-primary"
                     : "text-gray-700 hover:bg-gray-100"
@@ -131,7 +131,7 @@ export function AdminSidebar({ collapsed, mobileOpen = false, onCloseMobile }: A
         />
         {/* Drawer */}
         <aside
-          className={`absolute left-0 top-0 h-full bg-white border-r border-gray-200 shadow-xl transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}
+          className={`absolute left-0 top-0 h-full bg-white2 border-r border-gray-200 shadow-xl transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}
           style={{ width: "18rem" }}
           aria-label="Mobile sidebar"
         >
